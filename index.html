@@ -28,10 +28,13 @@
     gap: 10px;
   }
 
-  .logo img {
-    width: 32px;
-    height: 32px;
-  }
+ .logo img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%; /* <-- делает круглую */
+  object-fit: cover;  /* <-- картинка красиво вписывается */
+}
+
 
   .logo-text {
     font-size: 1.4em;
@@ -320,6 +323,7 @@ showBrands();
 
 </body>
 </html>
+
 
 
 
