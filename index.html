@@ -13,14 +13,38 @@
     color: #bfa8d1;
   }
 
+  /* Хедер */
   header {
     display: flex;
-    justify-content: flex-end;
-    padding: 15px;
+    justify-content: space-between; /* слева логотип, справа ссылки */
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #2e1733;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
     gap: 10px;
   }
 
-  header a {
+  .logo img {
+    width: 32px;
+    height: 32px;
+  }
+
+  .logo-text {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #fff;
+  }
+
+  .header-links {
+    display: flex;
+    gap: 10px;
+  }
+
+  .header-links a {
     text-decoration: none;
     color: #fff;
     background-color: #3e1f50;
@@ -29,10 +53,11 @@
     transition: 0.3s;
   }
 
-  header a:hover {
+  .header-links a:hover {
     background-color: #6a3b87;
   }
 
+  /* Контейнеры */
   .container {
     padding: 20px;
     display: flex;
@@ -134,8 +159,14 @@
 <body>
 
 <header>
-  <a href="https://t.me/Fluffy_Manager" target="_blank">Связь в Telegram</a>
-  <a href="reviews.html" target="_blank">Отзывы</a>
+  <div class="logo">
+    <img src="images/shop-icon.png" alt="logo">
+    <span class="logo-text">fluffy</span>
+  </div>
+  <div class="header-links">
+    <a href="https://t.me/Fluffy_Manager" target="_blank">Связь в Telegram</a>
+    <a href="reviews.html" target="_blank">Отзывы</a>
+  </div>
 </header>
 
 <div class="container" id="brandsContainer">
@@ -146,6 +177,9 @@
   <!-- Карточки жиж бренда будут вставляться через JS -->
   <button id="backBtn" style="margin-top:20px; padding:10px 15px; border:none; border-radius:8px; background-color:#3e1f50; color:#fff; cursor:pointer;">Назад к брендам</button>
 </div>
+
+</body>
+</html>
 
 <script>
 const DATA = [
@@ -286,6 +320,7 @@ showBrands();
 
 </body>
 </html>
+
 
 
 
