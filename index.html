@@ -150,47 +150,55 @@
 <script>
 const DATA = [
   {
+    id: 'Chaser Black',
+    name: 'Chaser Black 5%',
+    short: 'Тёмные миксы от Chaser.',
+    image: 'https://via.placeholder.com/150?text=Chaser+Black',
+    liquids: [
+      {id:'cb-br', name:'Berry Raspberry', desc:'Ягодный микс с малиной.', price:'€18.99'},
+      {id:'cb-bpa', name:'Blackcurrant Peach Apple', desc:'Чёрная смородина с персиком и яблоком.', price:'€18.99'}
+    ]
+  },
+  {
     id: 'Chaser Luxe',
-    name: 'Chaser Luxe',
+    name: 'Chaser Luxe 6.5%',
     short: 'Люксовые жидкости от Chaser.',
     image: 'https://via.placeholder.com/150?text=Chaser+Luxe',
     liquids: [
-      {id:'n-gm', name:'Grape Mint', desc:'Виноградный шторм с ледяной свежестью.', price:'€18.99'},
-      {id:'n-br', name:'Blueberry Raspberry', desc:'Лесные ягоды под вечерним небом.', price:'€18.99'},
-      {id:'n-bm', name:'Blueberry Mint', desc:'Мята в черничной дымке.', price:'€18.99'},
-      {id:'n-sc', name:'Strawberry Creme', desc:'Клубничный десерт под вечер.', price:'€18.99'},
-      {id:'n-tb', name:'Turbo Mint', desc:'Мятный вихрь для бодрого старта.', price:'€18.99'},
-      {id:'n-swcl', name:'Sour Watermelon Candy', desc:'Кисло-арбузный взрыв в каждой капле.', price:'€18.99'},
-      {id:'n-py', name:'Peach Yohurt', desc:'Персиковый йогурт с нежностью.', price:'€18.99'},
-      {id:'n-vit', name:'Vitamin', desc:'Энергия и витамины в каждой капле.', price:'€18.99'}
+      {id:'n-gl', name:'Grape Mint', desc:'Виноград с мятой.', price:'€18.99'},
+      {id:'n-sc', name:'Strawberry Creme', desc:'Клубничный крем.', price:'€18.99'},
+      {id:'n-swcl', name:'Sour Watermelon Candy Limited', desc:'Кисло-сладкая арбузная конфета.', price:'€18.99'},
+      {id:'n-br', name:'Blueberry Raspberry', desc:'Черника и малина.', price:'€18.99'},
+      {id:'n-bm', name:'Blueberry Mint', desc:'Черника с мятой.', price:'€18.99'},
+      {id:'n-tb', name:'Turbo Mint', desc:'Мятный вкус с лёгким холодком.', price:'€18.99'}
     ]
   },
   {
     id: 'Chaser Nova',
-    name: 'Chaser Nova',
+    name: 'Chaser Nova 5%',
     short: 'Новые миксы от Chaser.',
     image: 'https://via.placeholder.com/150?text=Chaser+Nova',
     liquids: [
-      {id:'cn-am', name:'Apple Mixed', desc:'Яблочный микс свежести.', price:'€18.99'},
-      {id:'cn-bcg', name:'Blackcurrant Grape', desc:'Смесь чёрной смородины и винограда.', price:'€18.99'},
-      {id:'cn-dr', name:'Double & Raspberry', desc:'Двойная ягода с малиной.', price:'€18.99'},
+      {id:'cn-am', name:'Apple Mixed', desc:'Смесь яблок.', price:'€18.99'},
+      {id:'cn-bcg', name:'Blackcurrant Grape', desc:'Чёрная смородина и виноград.', price:'€18.99'},
+      {id:'cn-dr', name:'Double & Raspberry', desc:'Двойная малина.', price:'€18.99'},
       {id:'cn-bb', name:'Blueberry Basilic', desc:'Черника с базиликом.', price:'€18.99'}
     ]
   },
   {
     id: 'Chaser Squid Game',
-    name: 'Chaser Squid Game',
+    name: 'Chaser Squid Game 5%',
     short: 'Limited Edition от Chaser.',
-    image: 'https://via.placeholder.com/150?text=Squid+Game',
+    image: 'https://via.placeholder.com/150?text=Chaser+Squid+Game',
     liquids: [
-      {id:'cs-jp', name:'Jasmine Peach', desc:'Жасмин и персик в лимитированном миксе.', price:'€21.99'},
-      {id:'cs-am', name:'Aloe Mint', desc:'Алоэ с мятой для свежести.', price:'€21.99'},
-      {id:'cs-ppl', name:'Pineapple Passion Lime', desc:'Ананас с маракуйей и лаймом.', price:'€21.99'}
+      {id:'cs-jp', name:'Jasmine Peach', desc:'Жасмин и персик.', price:'€21.99'},
+      {id:'cs-am', name:'Aloe Mint', desc:'Алоэ и мята.', price:'€21.99'},
+      {id:'cs-ppl', name:'Pineapple Passion Lime', desc:'Ананас, маракуйя и лайм.', price:'€21.99'}
     ]
   },
   {
     id: 'Vozol',
-    name: 'Vozol',
+    name: 'Vozol 5%',
     short: 'Фруктовые и свежие вкусы от Vozol.',
     image: 'https://via.placeholder.com/150?text=Vozol',
     liquids: [
@@ -201,19 +209,20 @@ const DATA = [
   },
   {
     id: 'Elfliq',
-    name: 'Elfliq',
+    name: 'Elfliq 5%',
     short: 'Лёгкие и утончённые вкусы для ежедневного парения.',
     image: 'https://via.placeholder.com/150?text=Elfliq',
     liquids: [
-      {id:'e-gc', name:'Grape Cherry', desc:'Сливочная клубника с киви.', price:'€15.99'},
-      {id:'e-dg', name:'Double Grape', desc:'Сливочная клубника с киви.', price:'€15.99'},
-      {id:'e-rl', name:'Raspberry Lychee', desc:'Сливочная клубника с киви.', price:'€15.99'},
-      {id:'e-jr', name:'Jasmine Raspberry', desc:'Сливочная клубника с киви.', price:'€15.99'},
-      {id:'e-bc', name:'Blackberry Cranberry', desc:'Сливочная клубника с киви.', price:'€15.99'},
-      {id:'e-cc', name:'Cherry Cola', desc:'Освежающий зелёный микс.', price:'€6.00'}
+      {id:'e-gc', name:'Grape Cherry', desc:'Сладкий виноград с вишней.', price:'€15.99'},
+      {id:'e-dg', name:'Double Grape', desc:'Двойная порция винограда.', price:'€15.99'},
+      {id:'e-rl', name:'Raspberry Lychee', desc:'Малина с личи.', price:'€15.99'},
+      {id:'e-jr', name:'Jasmine Raspberry', desc:'Жасмин с малиной.', price:'€15.99'},
+      {id:'e-bc', name:'Blackberry Cranberry', desc:'Ежевика с клюквой.', price:'€15.99'},
+      {id:'e-cc', name:'Cherry Cola', desc:'Вишня с колой.', price:'€6.00'}
     ]
   }
 ];
+
 
 const brandsContainer = document.getElementById('brandsContainer');
 const liquidsContainer = document.getElementById('liquidsContainer');
@@ -274,3 +283,4 @@ showBrands();
 
 </body>
 </html>
+
