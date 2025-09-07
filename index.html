@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Каталог жиж</title>
+  <style>
+    :root {
+      --bg:#24132a; /* фон */
+      --card:#2e1733;
+      --muted:#bfa8d1;
+      --accent:#8b5cf6;
+      --glass: rgba(255,255,255,0.03);
+    }
+    html, body { height:100%; }
+    body {
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg,var(--bg), #1b0f1d 80%);
+      color:var(--muted);
+      display:flex;
+      justify-content:center;
+      padding:16px;
+    }
+    .container { width:100%; max-width:1100px; }
+
+    header {
+      display:flex;
+      align-items:center;
+      gap:16px;
+      margin-bottom:20px;
+      flex-wrap:wrap;
+    }
+    .logo {
+      width:56px; height:56px;
+      border-radius:12px;
+      background:linear-gradient(135deg,var(--accent),#5b21b6);
+      box-shadow:0 6px 18px rgba(0,0,0,0.5);
+      display:flex; align-items:center; justify-content:center;
+      font-weight:700; color:white;
+    }
+    h1 { font-size:20px; margin:0 }
+    p.lead { margin:0; color:#d8cdee; opacity:0.9 }
+
+    .nav-links {
+      display:flex;
+      gap:10px;
+      margin-left:auto;
+      flex-shrink:0;
+    }
+    .btn {
+      padding: 8px 14px;
+      border-radius: 10px;
+      background: rgba(139, 92, 246, 0.15);
+      color: #efe7ff;
+      font-weight: 600;
+      font-size: 14px;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: background 0.2s ease, transform 0.2s ease;
+      white-space:nowrap;
+    }
+    .btn:hover {
+      background: rgba(139, 92, 246, 0.3);
+      transform: translateY(-2px);
+    }
+
+    /* сетка брендов */
+    .grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+      gap:18px;
+    }
+    .brand-card {
+      background:var(--card);
+      border-radius:12px;
+      padding:12px;
+      text-align:center;
+      box-shadow:0 4px 10px rgba(0,0,0,0.45);
+      transition:transform .16s ease,box-shadow .16s ease;
+    }
+    .brand-card:hover {
+      transform:translateY(-6px);
+      box-shadow:0 10px 30px rgba(0,0,0,0.6);
+    }
+    .brand-image {
+      width:100%;
+      aspect-ratio:1/1;
+      border-radius:10px;
+      display:inline-grid;
+      place-items:center;
+      background:var(--glass);
+      border:1px solid rgba(255,255,255,0.03);
+      cursor:pointer;
+    }
+    .brand-image img { max-width:80%; max-height:80%; }
+    .brand-title { margin-top:10px; font-weight:600; color:#efe7ff }
+
+    /* страница бренда */
+    .brand-page { display:none; margin-top:20px }
+    .brand-page.active { display:block }
+    .back {
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:10px;
+      background:rgba(0,0,0,0.25);
+      border:1px solid rgba(255,255,255,0.03);
+      cursor:pointer;
+    }
+
+    .liquids {
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+      gap:16px;
+      margin-top:16px;
+    }
+    .liq {
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      padding:12px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,0.03);
+    }
+    .liq-row {
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    .liq-thumb {
+      width:80px; height:80px; /* стало больше */
+      border-radius:8px;
+      display:grid; place-items:center;
+      background:var(--glass);
+      flex-shrink:0;
+    }
+    .liq h3 { margin:0; font-size:15px; color:#fff }
+    .liq p { margin:6px 0 0; font-size:13px; color:#cbbde6 }
+    .price { margin-left:auto; font-weight:700; color:#fff }
+
+    footer {
+      margin-top:28px;
+      color:#a890bf;
+      font-size:13px;
+    }
+
+    /* мобильная адаптация */
+    @media (max-width:600px) {
+      header { flex-direction:column; align-items:flex-start; gap:8px; }
+      .nav-links { margin-left:0; }
+      .grid { gap:12px }
+      .liquids { grid-template-columns:1fr }
+      .btn { font-size:13px; padding:7px 12px }
+      .liq-thumb { width:72px; height:72px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">ЖИ</div>
+      <div style="flex-grow:1">
+        <h1>Каталог жиж</h1>
+        <p class="lead">Нажми на логотип бренда — откроется перечень доступных вкусов, описание и цена.</p>
+      </div>
+      <nav class="nav-links">
+        <a href="https://t.me/Fluffy_Manager" target="_blank" class="btn">Связь в Telegram</a>
+        <a href="reviews.html" class="btn">Отзывы</a>
+      </nav>
+    </header>
+
+    <main>
+      <section id="brands">
+        <div class="grid" id="brandGrid"></div>
+      </section>
+
+      <section id="brandPage" class="brand-page">
+        <button class="back" id="backBtn">← Назад к брендам</button>
+        <div id="brandHeader" style="margin-top:12px"></div>
+        <div class="liquids" id="liquidList"></div>
+      </section>
+    </main>
+
+    <footer>
+      <div>Демо-сайт. Все данные находятся прямо в HTML/JS, их можно заменить своими.</div>
+    </footer>
+  </div>
+
+  <script>
+    // Данные брендов и жиж
+    const DATA = [
+      {
+        id: 'nebula',
+        name: 'Nebula Vape',
+        short: 'Ароматные фруктовые миксы с глубоким послевкусием.',
+        image: logoSVG('#8b5cf6','N'),
+        liquids: [
+          {id:'n-berry', name:'Star Berry', desc:'Смесь лесных ягод и лёгкой мятной ноты.', price:'€6.50'},
+          {id:'n-mango', name:'Solar Mango', desc:'Сочный манго с карамельным финишем.', price:'€6.50'},
+          {id:'n-ice', name:'Cosmic Ice', desc:'Цитрусы + ментол, чистая свежесть.', price:'€7.00'}
+        ]
+      },
+      {
+        id: 'violet',
+        name: 'Violet Drop',
+        short: 'Тёплые десертные вкусы в бархатной упаковке.',
+        image: logoSVG('#6b21a8','V'),
+        liquids: [
+          {id:'v-custard', name:'Velvet Custard', desc:'Сливочный заварной крем с ванилью.', price:'€7.20'},
+          {id:'v-pie', name:'Purple Pie', desc:'Ягодный пирог с хрустящей корочкой.', price:'€6.90'}
+        ]
+      },
+      {
+        id: 'luna',
+        name: 'Luna Mist',
+        short: 'Лёгкие и утончённые вкусы для ежедневного парения.',
+        image: logoSVG('#a78bfa','L'),
+        liquids: [
+          {id:'l-tea', name:'Moon Tea', desc:'Чай с жасмином и лёгкой сладостью.', price:'€5.90'},
+          {id:'l-pear', name:'Lunar Pear', desc:'Спелая груша и мед.' , price:'€6.20'},
+          {id:'l-breeze', name:'Night Breeze', desc:'Освежающий зелёный микс.', price:'€6.00'}
+        ]
+      }
+    ];
+
+    // SVG-заглушки для логотипов
+    function logoSVG(color, letter){
+      const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'>
+        <defs><linearGradient id='g' x1='0' x2='1' y1='0' y2='1'>
+          <stop offset='0' stop-color='${color}'/>
+          <stop offset='1' stop-color='#3b076b'/>
+        </linearGradient></defs>
+        <rect rx='48' width='400' height='400' fill='url(#g)'/>
+        <text x='50%' y='54%' fill='white' font-family='Helvetica, Arial' font-size='170' font-weight='700' text-anchor='middle'>${letter}</text>
+      </svg>`;
+      return 'data:image/svg+xml;utf8,'+encodeURIComponent(svg);
+    }
+
+    const brandGrid = document.getElementById('brandGrid');
+    const brandPage = document.getElementById('brandPage');
+    const brandHeader = document.getElementById('brandHeader');
+    const liquidList = document.getElementById('liquidList');
+    const backBtn = document.getElementById('backBtn');
+
+    function renderBrands(){
+      brandGrid.innerHTML = '';
+      DATA.forEach(brand => {
+        const card = document.createElement('div');
+        card.className = 'brand-card';
+        card.innerHTML = `
+          <button class='brand-image' aria-label='Открыть ${brand.name}' data-id='${brand.id}'>
+            <img src='${brand.image}' alt='${brand.name} логотип' />
+          </button>
+          <div class='brand-title'>${brand.name}</div>
+        `;
+        brandGrid.appendChild(card);
+      });
+      brandGrid.querySelectorAll('button.brand-image').forEach(btn => {
+        btn.addEventListener('click', () => openBrand(btn.dataset.id));
+      });
+    }
+
+    function openBrand(id){
+      const brand = DATA.find(b => b.id === id);
+      if(!brand) return;
+      brandHeader.innerHTML = `<h2 style="color:#fff;margin:8px 0 2px">${brand.name}</h2><div style='color:#cbbde6'>${brand.short}</div>`;
+      liquidList.innerHTML = '';
+      brand.liquids.forEach(l => {
+        const el = document.createElement('div');
+        el.className = 'liq';
+        el.innerHTML = `
+          <div class='liq-row'>
+            <div class='liq-thumb'>
+              <svg width='42' height='42' viewBox='0 0 24 24'><circle cx='12' cy='8' r='4' fill='rgba(255,255,255,0.9)'/><rect x='6' y='12' width='12' height='8' rx='2' fill='rgba(255,255,255,0.06)'/></svg>
+            </div>
+            <div>
+              <h3>${l.name}</h3>
+              <p>${l.desc}</p>
+            </div>
+            <div class='price'>${l.price}</div>
+          </div>
+        `;
+        liquidList.appendChild(el);
+      });
+      brandPage.classList.add('active');
+      brandPage.scrollIntoView({behavior:'smooth'});
+    }
+
+    backBtn.addEventListener('click', ()=>{ 
+      brandPage.classList.remove('active'); 
+      window.scrollTo({top:0,behavior:'smooth'}); 
+    });
+
+    renderBrands();
+  </script>
+</body>
+</html>
