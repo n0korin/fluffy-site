@@ -192,8 +192,8 @@ const DATA = [
     short: 'Тёмные миксы от Chaser.',
     image: 'images/chaser-black.jpg',
     liquids: [
-      {id:'cb-er', name:'Energy Raspberry', desc:'Малиновый микс с енергетиком.', price:'€18.99', image:'images/energyraspberry.jpg'},
-      {id:'cb-bpa', name:'Blackcurrant Peach Apple', desc:'Чёрная смородина с персиком и яблоком.', price:'€18.99', image:'images/blackcurrantpeachapple.jpg'}
+      {id:'cb-er', name:'Energy Raspberry', desc:'Малиновый микс с енергетиком.', price:'€18.99', image:'images/energyraspberry.jpg', available: true},
+      {id:'cb-bpa', name:'Blackcurrant Peach Apple', desc:'Чёрная смородина с персиком и яблоком.', price:'€18.99', image:'images/blackcurrantpeachapple.jpg', available: true}
     ]
   },
   {
@@ -202,14 +202,15 @@ const DATA = [
     short: 'Люксовые жидкости от Chaser.',
     image: 'images/chaser-lux.png',
     liquids: [
-      {id:'n-gl', name:'Grape Mint', desc:'Виноград с мятой.', price:'€18.99', image:'images/grapemint.PNG'},
-      {id:'n-py', name:'Peach Yogurt', desc:'Персик йогурт.', price:'€18.99', image:'images/peachyogurt.PNG'},
-      {id:'n-vit', name:'Vitamin', desc:'Витамины.', price:'€18.99', image:'images/vitamin.PNG'},
-      {id:'n-sc', name:'Strawberry Creme', desc:'Клубничный крем.', price:'€18.99', image:'images/strawberrycream.JPG'},
-      {id:'n-br', name:'Blueberry Raspberry', desc:'Черника и малина.', price:'€18.99', image:'images/blueberryraspberry.JPG'},
-      {id:'n-bm', name:'Blueberry Mint', desc:'Черника с мятой.', price:'€18.99', image:'images/blueberrymint.PNG'},
-      {id:'n-sle', name:'Sangria Limited Edition', desc:'Сангрия лимитированная.', price:'€18.99', image:'images/sangrialimited.jpg'},
-      {id:'n-tb', name:'Berry Limonad', desc:'Ягодный лимонад.', price:'€18.99', image:'images/berrylimonade.jpg'}
+      {id:'n-gl', name:'Grape Mint', desc:'Виноград с мятой.', price:'€18.99', image:'images/grapemint.PNG', available: true},
+      {id:'n-py', name:'Peach Yogurt', desc:'Персик йогурт.', price:'€18.99', image:'images/peachyogurt.PNG', available: false},
+      {id:'n-vit', name:'Vitamin', desc:'Витамины.', price:'€18.99', image:'images/vitamin.PNG', available: true},
+      {id:'n-sc', name:'Strawberry Creme', desc:'Клубничный крем.', price:'€18.99', image:'images/strawberrycream.JPG', available: true},
+      {id:'n-br', name:'Blueberry Raspberry', desc:'Черника и малина.', price:'€18.99', image:'images/blueberryraspberry.JPG', available: true},
+      {id:'n-br', name:'Sour Candy Watermelon', desc:'Кислые арбузные конфеты.', price:'€18.99', image:'images/sourcandywatermelon.JPG', available: true},
+      {id:'n-bm', name:'Blueberry Mint', desc:'Черника с мятой.', price:'€18.99', image:'images/blueberrymint.PNG', available: false},
+      {id:'n-sle', name:'Sangria Limited Edition', desc:'Сангрия лимитированная.', price:'€18.99', image:'images/sangrialimited.jpg', available: false},
+      {id:'n-tb', name:'Berry Limonad', desc:'Ягодный лимонад.', price:'€18.99', image:'images/berrylimonade.jpg', available: true}
     ]
   },
   {
@@ -218,11 +219,11 @@ const DATA = [
     short: 'Новые миксы от Chaser.',
     image: 'images/nova-blueberry.png',
     liquids: [
-      {id:'cn-am', name:'Apple Mixed', desc:'Смесь яблок.', price:'€18.99', image:'images/applemixed.JPG'},
-      {id:'cn-bcg', name:'Blackcurrant Grape', desc:'Чёрная смородина и виноград.', price:'€18.99', image:'images/blackcurrantgrape.JPG'},
-      {id:'cn-dr', name:'Double & Raspberry', desc:'Двойная малина.', price:'€18.99', image:'images/doubleraspberry.JPG'},
-      {id:'cn-bg', name:'Blueberry Currant', desc:'Черника с виноградом.', price:'€18.99', image:'images/blueberrycurrent.JPG'},
-      {id:'cn-bb', name:'Blueberry Basil', desc:'Черника с базиликом.', price:'€18.99', image:'images/blueberrybasil.PNG'}
+      {id:'cn-am', name:'Apple Mixed', desc:'Смесь яблок.', price:'€18.99', image:'images/applemixed.JPG', available: true},
+      {id:'cn-bcg', name:'Blackcurrant Grape', desc:'Чёрная смородина и виноград.', price:'€18.99', image:'images/blackcurrantgrape.JPG', available: true},
+      {id:'cn-dr', name:'Double & Raspberry', desc:'Двойная малина.', price:'€18.99', image:'images/doubleraspberry.JPG', available: true},
+      {id:'cn-bg', name:'Blueberry Currant', desc:'Черника с виноградом.', price:'€18.99', image:'images/blueberrycurrent.JPG', available: true},
+      {id:'cn-bb', name:'Blueberry Basil', desc:'Черника с базиликом.', price:'€18.99', image:'images/blueberrybasil.PNG', available: true}
     ]
   },
   {
@@ -231,42 +232,43 @@ const DATA = [
     short: 'Limited Edition от Chaser.',
     image: 'images/chaser-squidgame.jpg',
     liquids: [
-      {id:'cs-jp', name:'Jasmine Peach', desc:'Жасмин и персик.', price:'€21.99', image:'images/jasminepeach.jpg'},
-      {id:'cs-am', name:'Aloe Mint', desc:'Алоэ и мята.', price:'€21.99', image:'images/aloemint.jpg'},
-      {id:'cs-ppl', name:'Pineapple Passion Lime', desc:'Ананас, маракуйя и лайм.', price:'€21.99', image:'images/pineapplepassionlime.jpg'}
+      {id:'cs-jp', name:'Jasmine Peach', desc:'Жасмин и персик.', price:'€21.99', image:'images/jasminepeach.jpg', available: true},
+      {id:'cs-am', name:'Aloe Mint', desc:'Алоэ и мята.', price:'€21.99', image:'images/aloemint.jpg', available: true},
+      {id:'cs-ppl', name:'Pineapple Passion Lime', desc:'Ананас, маракуйя и лайм.', price:'€21.99', image:'images/pineapplepassionlime.jpg', available: true}
     ]
   },
   {
-  id: 'Vozol Prime',
-  name: 'Vozol Prime 5%',
-  short: 'Фруктовые и свежие вкусы от Vozol.',
-  image: 'images/vozol.JPG',
-  liquids: [
-    {id:'v-sk', name:'Strawberry Kiwi', desc:'Сочная клубника с киви.', price:'€15.99', image:'images/strawberrykiwi1.jpg'},
-    {id:'v-pc', name:'Purple Candy', desc:'Сладкая фиолетовая конфета.', price:'€15.99', image:'images/purplecandy.jpg'},
-    {id:'v-b', name:'Berry', desc:'Ягодный микс.', price:'€15.99', image:'images/berry.jpg'},
-    {id:'v-br', name:'Blue Raspberry', desc:'Голубая малина.', price:'€15.99', image:'images/blueraspberry.jpg'},
-    {id:'v-bp', name:'Berry Peach', desc:'Ягоды с персиком.', price:'€15.99', image:'images/berrypeach.jpg'},
-    {id:'v-pmw', name:'Peach Mango Watermelon', desc:'Персик, манго и арбуз.', price:'€15.99', image:'images/peachmangowatermelon.jpg'},
-    {id:'v-l777', name:'Love 7-7-7', desc:'Сладкий фруктовый микс.', price:'€15.99', image:'images/LOVEEE.jpg'},
-    {id:'v-sai', name:'Sour Apple Ice', desc:'Кислое яблоко с холодком.', price:'€15.99', image:'images/sourappleice.jpg'}
-  ]
-},
+    id: 'Vozol Prime',
+    name: 'Vozol Prime 5%',
+    short: 'Фруктовые и свежие вкусы от Vozol.',
+    image: 'images/vozol.JPG',
+    liquids: [
+      {id:'v-sk', name:'Strawberry Kiwi', desc:'Сочная клубника с киви.', price:'€15.99', image:'images/strawberrykiwi1.jpg', available: true},
+      {id:'v-pc', name:'Purple Candy', desc:'Сладкая фиолетовая конфета.', price:'€15.99', image:'images/purplecandy.jpg', available: true},
+      {id:'v-b', name:'Berry', desc:'Ягодный микс.', price:'€15.99', image:'images/berry.jpg', available: true},
+      {id:'v-br', name:'Blue Raspberry', desc:'Голубая малина.', price:'€15.99', image:'images/blueraspberry.jpg', available: true},
+      {id:'v-bp', name:'Berry Peach', desc:'Ягоды с персиком.', price:'€15.99', image:'images/berrypeach.jpg', available: true},
+      {id:'v-pmw', name:'Peach Mango Watermelon', desc:'Персик, манго и арбуз.', price:'€15.99', image:'images/peachmangowatermelon.jpg', available: true},
+      {id:'v-l777', name:'Love 7-7-7', desc:'Сладкий фруктовый микс.', price:'€15.99', image:'images/LOVEEE.jpg', available: true},
+      {id:'v-sai', name:'Sour Apple Ice', desc:'Кислое яблоко с холодком.', price:'€15.99', image:'images/sourappleice.jpg', available: true}
+    ]
+  },
   {
     id: 'Elfliq',
     name: 'Elfliq 5%',
     short: 'Лёгкие и утончённые вкусы для ежедневного парения.',
     image: 'images/elfliq.jpg',
     liquids: [
-      {id:'e-gc', name:'Grape Cherry', desc:'Сладкий виноград с вишней.', price:'€15.99', image:'images/grapecherry.jpeg'},
-      {id:'e-dg', name:'Blueberry Sour Raspberry', desc:'Черника с кислой малиной.', price:'€15.99', image:'images/blueberrysourraspberry.webp'},
-      {id:'e-rl', name:'Raspberry Lychee', desc:'Малина с личи.', price:'€15.99', image:'images/raspberrylynchee.webp'},
-      {id:'e-jr', name:'Jasmine Raspberry', desc:'Жасмин с малиной.', price:'€15.99', image:'images/jasmineraspberry.jpeg'},
-      {id:'e-bc', name:'Green Grape Rose', desc:'Зеленый виноград с розой.', price:'€15.99', image:'images/greengraperose.webp'},
-      {id:'e-cc', name:'Cherry Cola', desc:'Вишня с колой.', price:'€15.99', image:'images/cherrycola.jpg'}
+      {id:'e-gc', name:'Grape Cherry', desc:'Сладкий виноград с вишней.', price:'€15.99', image:'images/grapecherry.jpeg', available: true},
+      {id:'e-dg', name:'Blueberry Sour Raspberry', desc:'Черника с кислой малиной.', price:'€15.99', image:'images/blueberrysourraspberry.webp', available: true},
+      {id:'e-rl', name:'Raspberry Lychee', desc:'Малина с личи.', price:'€15.99', image:'images/raspberrylynchee.webp', available: true},
+      {id:'e-jr', name:'Jasmine Raspberry', desc:'Жасмин с малиной.', price:'€15.99', image:'images/jasmineraspberry.jpeg', available: true},
+      {id:'e-bc', name:'Green Grape Rose', desc:'Зеленый виноград с розой.', price:'€15.99', image:'images/greengraperose.webp', available: true},
+      {id:'e-cc', name:'Cherry Cola', desc:'Вишня с колой.', price:'€15.99', image:'images/cherrycola.jpg', available: true}
     ]
   }
 ];
+
 
 
 const brandsContainer = document.getElementById('brandsContainer');
@@ -301,16 +303,18 @@ function showLiquids(brand) {
   const list = document.createElement('div');
   list.className = 'liquid-list';
   brand.liquids.forEach(liquid => {
-    const card = document.createElement('div');
-    card.className = 'liquid-card';
-    card.innerHTML = `
-     <img src="${liquid.image || 'https://via.placeholder.com/120?text='+encodeURIComponent(liquid.name)}" alt="${liquid.name}">
-      <div class="liquid-name">${liquid.name}</div>
-      <div class="liquid-desc">${liquid.desc}</div>
-      <div class="liquid-price">${liquid.price}</div>
-    `;
-    list.appendChild(card);
-  });
+  const card = document.createElement('div');
+  card.className = 'liquid-card';
+  card.innerHTML = `
+    <img src="${liquid.image || 'https://via.placeholder.com/120?text='+encodeURIComponent(liquid.name)}" 
+         alt="${liquid.name}" 
+         style="filter:${liquid.available === false ? 'grayscale(100%)' : 'none'}">
+    <div class="liquid-name">${liquid.name}</div>
+    <div class="liquid-desc">${liquid.desc}</div>
+    <div class="liquid-price">${liquid.available === false ? 'Закончилось' : liquid.price}</div>
+  `;
+  list.appendChild(card);
+});
 
   liquidsContainer.appendChild(list);
   liquidsContainer.appendChild(backBtn);
@@ -328,6 +332,7 @@ showBrands();
 
 </body>
 </html>
+
 
 
 
