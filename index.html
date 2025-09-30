@@ -311,7 +311,7 @@ function showLiquids(brand) {
          style="filter:${liquid.available === false ? 'grayscale(100%)' : 'none'}">
     <div class="liquid-name">${liquid.name}</div>
     <div class="liquid-desc">${liquid.desc}</div>
-    <div class="liquid-price">${liquid.available === false ? 'Закончилось' : liquid.price}</div>
+    <div class="liquid-price">${liquid.available === false ? 'Нет в наличии' : liquid.price}</div>
   `;
   list.appendChild(card);
 });
@@ -332,6 +332,7 @@ showBrands();
 
 </body>
 </html>
+
 
 
 
