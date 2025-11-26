@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
@@ -223,7 +223,7 @@ const DATA = [
     image: 'images/chaser-squidgame.jpg',
     liquids: [
       {id:'cs-jp', name:'Jasmine Peach', desc:'Жасмин и персик.', price:'€21.99', image:'images/jasminepeach.jpg', available: false},
-      {id:'cs-am', name:'Aloe Mint', desc:'Алоэ и мята.', price:'€21.99', image:'images/aloemint.jpg', available: true},
+      {id:'cs-am', name:'Aloe Mint', desc:'Алоэ и мята.', price:'€21.99', image:'images/aloemint.jpg', available: false},
       {id:'cs-ppl', name:'Pineapple Passion Lime', desc:'Ананас, маракуйя и лайм.', price:'€21.99', image:'images/pineapplepassionlime.jpg', available: true}
     ]
   },
@@ -233,15 +233,15 @@ const DATA = [
     short: 'Фруктовые и свежие вкусы от Vozol.',
     image: 'images/vozol.JPG',
     liquids: [
-      {id:'v-sk', name:'Strawberry Kiwi', desc:'Сочная клубника с киви.', price:'€15.99', image:'images/strawberrykiwi1.jpg', available: true},
-      {id:'v-pc', name:'Purple Candy', desc:'Сладкая фиолетовая конфета.', price:'€15.99', image:'images/purplecandy.jpg', available: true},
+      {id:'v-sk', name:'Strawberry Kiwi', desc:'Сочная клубника с киви.', price:'€15.99', image:'images/strawberrykiwi1.jpg', available: false},
+      {id:'v-pc', name:'Purple Candy', desc:'Сладкая фиолетовая конфета.', price:'€15.99', image:'images/purplecandy.jpg', available: false},
       {id:'v-b', name:'Berry', desc:'Ягодный микс.', price:'€15.99', image:'images/berry.jpg', available: true},
-      {id:'v-br', name:'Blue Raspberry', desc:'Голубая малина.', price:'€15.99', image:'images/blueraspberry.jpg', available: true},
-      {id:'v-bp', name:'Berry Peach', desc:'Ягоды с персиком.', price:'€15.99', image:'images/berrypeach.jpg', available: true},
+      {id:'v-br', name:'Blue Raspberry', desc:'Голубая малина.', price:'€15.99', image:'images/blueraspberry.jpg', available: false},
+      {id:'v-bp', name:'Berry Peach', desc:'Ягоды с персиком.', price:'€15.99', image:'images/berrypeach.jpg', available: false},
       {id:'v-pmw', name:'Peach Mango Watermelon', desc:'Персик, манго и арбуз.', price:'€15.99', image:'images/peachmangowatermelon.jpg', available: true},
       {id:'v-l777', name:'Love 7-7-7', desc:'Сладкий фруктовый микс.', price:'€15.99', image:'images/LOVEEE.jpg', available: true},
-      {id:'v-sai', name:'Sour Apple Ice', desc:'Кислое яблоко с холодком.', price:'€15.99', image:'images/sourappleice.jpg', available: true},
-      {id:'v-ppfl', name:'Pineapple Passion Fruit Lime', desc:'Ананас,Маракуйя и лайм.', price:'€15.99', image:'images/PineapplePassionFruitLime.jpg', available: true}
+      {id:'v-sai', name:'Sour Apple Ice', desc:'Кислое яблоко с холодком.', price:'€15.99', image:'images/sourappleice.jpg', available: false},
+      {id:'v-ppfl', name:'Pineapple Passion Fruit Lime', desc:'Ананас,Маракуйя и лайм.', price:'€15.99', image:'images/PineapplePassionFruitLime.jpg', available: false}
     ]
   },
   {
@@ -250,11 +250,11 @@ const DATA = [
     short: 'Лёгкие и утончённые вкусы для ежедневного парения.',
     image: 'images/elfliq.jpg',
     liquids: [
-      {id:'e-gc', name:'Grape Cherry', desc:'Сладкий виноград с вишней.', price:'€15.99', image:'images/grapecherry.jpeg', available: true},
-      {id:'e-dg', name:'Blueberry Sour Raspberry', desc:'Черника с кислой малиной.', price:'€15.99', image:'images/blueberrysourraspberry.webp', available: true},
-      {id:'e-rl', name:'Raspberry Lychee', desc:'Малина с личи.', price:'€15.99', image:'images/raspberrylynchee.webp', available: true},
+      {id:'e-gc', name:'Grape Cherry', desc:'Сладкий виноград с вишней.', price:'€15.99', image:'images/grapecherry.jpeg', available: false},
+      {id:'e-dg', name:'Blueberry Sour Raspberry', desc:'Черника с кислой малиной.', price:'€15.99', image:'images/blueberrysourraspberry.webp', available: false},
+      {id:'e-rl', name:'Raspberry Lychee', desc:'Малина с личи.', price:'€15.99', image:'images/raspberrylynchee.webp', available: false},
       {id:'e-jr', name:'Jasmine Raspberry', desc:'Жасмин с малиной.', price:'€15.99', image:'images/jasmineraspberry.jpeg', available: true},
-      {id:'e-bc', name:'Green Grape Rose', desc:'Зеленый виноград с розой.', price:'€15.99', image:'images/greengraperose.webp', available: true},
+      {id:'e-bc', name:'Green Grape Rose', desc:'Зеленый виноград с розой.', price:'€15.99', image:'images/greengraperose.webp', available: false},
       {id:'e-cc', name:'Cherry Cola', desc:'Вишня с колой.', price:'€15.99', image:'images/cherrycola.jpg', available: true}
     ]
   },
@@ -332,6 +332,7 @@ showBrands();
 
 </body>
 </html>
+
 
 
 
