@@ -227,100 +227,107 @@ const DATA = [
 
 
 <script>
-const brandsContainer = document.getElementById('brandsContainer');
-const liquidsContainer = document.getElementById('liquidsContainer');
-const backBtn = document.getElementById('backBtn');
+document.addEventListener('DOMContentLoaded', () => {
 
-/* ===== НАСТРОЙКИ АКЦИИ ===== */
-const PROMO_ACTIVE = true;       // ← выключить акцию: false
-const PROMO_DISCOUNT = 1;        // скидка в евро
-const PROMO_TEXT = 'АКЦИЯ 🎄';
-const PROMO_NOTE = 'От покупки 2 и более — цена 14€';
+  const brandsContainer = document.getElementById('brandsContainer');
+  const liquidsContainer = document.getElementById('liquidsContainer');
+  const backBtn = document.getElementById('backBtn');
 
-/* ===== ПОКАЗ БРЕНДОВ ===== */
-function showBrands() {
-  brandsContainer.innerHTML = '';
+  if (!brandsContainer || !liquidsContainer || !backBtn) {
+    console.error('Один из контейнеров не найден в HTML');
+    return;
+  }
 
-  DATA.forEach(brand => {
-    const card = document.createElement('div');
-    card.className = 'brand-card';
-    card.innerHTML = `
-      <img src="${brand.image}" alt="${brand.name}">
-      <div class="brand-name">${brand.name}</div>
-    `;
-    card.addEventListener('click', () => showLiquids(brand));
-    brandsContainer.appendChild(card);
-  });
+  /* ===== НАСТРОЙКИ АКЦИИ ===== */
+  const PROMO_ACTIVE = true;
+  const PROMO_DISCOUNT = 1;
+  const PROMO_TEXT = 'АКЦИЯ 🎄';
+  const PROMO_NOTE = 'От покупки 2 и более — цена 14€';
 
-  brandsContainer.style.display = 'flex';
-  liquidsContainer.style.display = 'none';
-}
+  /* ===== ПОКАЗ БРЕНДОВ ===== */
+  function showBrands() {
+    brandsContainer.innerHTML = '';
 
-/* ===== ПОКАЗ ЖИЖ ===== */
-function showLiquids(brand) {
-  liquidsContainer.innerHTML = '';
-
-  const title = document.createElement('h2');
-  title.textContent = brand.name + ' — ' + brand.short;
-  title.style.textAlign = 'center';
-  liquidsContainer.appendChild(title);
-
-  const list = document.createElement('div');
-  list.className = 'liquid-list';
-
-  brand.liquids.forEach(liquid => {
-    const card = document.createElement('div');
-    card.className = 'liquid-card';
-
-    const isAvailable = liquid.available !== false;
-
-    let priceHTML = '';
-    let promoHTML = '';
-
-    if (!isAvailable) {
-      priceHTML = `<div class="liquid-price soldout">Нет в наличии</div>`;
-    } else if (PROMO_ACTIVE) {
-      const original = parseFloat(liquid.price.replace('€',''));
-      const newPrice = (original - PROMO_DISCOUNT).toFixed(2);
-
-      priceHTML = `
-        <div class="liquid-price promo">€${newPrice}</div>
-        <div class="promo-note">${PROMO_NOTE}</div>
+    DATA.forEach(brand => {
+      const card = document.createElement('div');
+      card.className = 'brand-card';
+      card.innerHTML = `
+        <img src="${brand.image}" alt="${brand.name}">
+        <div class="brand-name">${brand.name}</div>
       `;
-      promoHTML = `<div class="promo-label">${PROMO_TEXT}</div>`;
-    } else {
-      priceHTML = `<div class="liquid-price">${liquid.price}</div>`;
-    }
+      card.addEventListener('click', () => showLiquids(brand));
+      brandsContainer.appendChild(card);
+    });
 
-    card.innerHTML = `
-      ${promoHTML}
-      <img src="${liquid.image || 'https://via.placeholder.com/120?text='+encodeURIComponent(liquid.name)}"
-           alt="${liquid.name}"
-           style="filter:${!isAvailable ? 'grayscale(100%)' : 'none'}">
-      <div class="liquid-name">${liquid.name}</div>
-      <div class="liquid-desc">${liquid.desc}</div>
-      ${priceHTML}
-    `;
+    brandsContainer.style.display = 'flex';
+    liquidsContainer.style.display = 'none';
+  }
 
-    list.appendChild(card);
-  });
+  /* ===== ПОКАЗ ЖИЖ ===== */
+  function showLiquids(brand) {
+    liquidsContainer.innerHTML = '';
 
-  liquidsContainer.appendChild(list);
-  liquidsContainer.appendChild(backBtn);
+    const title = document.createElement('h2');
+    title.textContent = brand.name + ' — ' + brand.short;
+    title.style.textAlign = 'center';
+    liquidsContainer.appendChild(title);
 
-  brandsContainer.style.display = 'none';
-  liquidsContainer.style.display = 'flex';
-}
+    const list = document.createElement('div');
+    list.className = 'liquid-list';
 
-/* ===== НАЗАД ===== */
-backBtn.addEventListener('click', showBrands);
+    brand.liquids.forEach(liquid => {
+      const card = document.createElement('div');
+      card.className = 'liquid-card';
 
-/* ===== СТАРТ ===== */
-showBrands();
+      const isAvailable = liquid.available !== false;
+
+      let priceHTML = '';
+      let promoHTML = '';
+
+      if (!isAvailable) {
+        priceHTML = `<div class="liquid-price soldout">Нет в наличии</div>`;
+      } else if (PROMO_ACTIVE) {
+        const original = parseFloat(liquid.price.replace('€',''));
+        const newPrice = (original - PROMO_DISCOUNT).toFixed(2);
+
+        priceHTML = `
+          <div class="liquid-price promo">€${newPrice}</div>
+          <div class="promo-note">${PROMO_NOTE}</div>
+        `;
+        promoHTML = `<div class="promo-label">${PROMO_TEXT}</div>`;
+      } else {
+        priceHTML = `<div class="liquid-price">${liquid.price}</div>`;
+      }
+
+      card.innerHTML = `
+        ${promoHTML}
+        <img src="${liquid.image || 'https://via.placeholder.com/120?text='+encodeURIComponent(liquid.name)}"
+             alt="${liquid.name}"
+             style="filter:${!isAvailable ? 'grayscale(100%)' : 'none'}">
+        <div class="liquid-name">${liquid.name}</div>
+        <div class="liquid-desc">${liquid.desc}</div>
+        ${priceHTML}
+      `;
+
+      list.appendChild(card);
+    });
+
+    liquidsContainer.appendChild(list);
+    liquidsContainer.appendChild(backBtn);
+
+    brandsContainer.style.display = 'none';
+    liquidsContainer.style.display = 'flex';
+  }
+
+  /* ===== НАЗАД ===== */
+  backBtn.addEventListener('click', showBrands);
+
+  /* ===== СТАРТ ===== */
+  showBrands();
+
+});
 </script>
 
-</body>
-</html>
 
 
 
