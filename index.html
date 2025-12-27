@@ -260,33 +260,36 @@ function showLiquids(brand) {
   brand.liquids.forEach(liquid => {
   const card = document.createElement('div');
   card.className = 'liquid-card';
+
+  const basePrice = parseFloat(liquid.price.replace('€',''));
+  const salePrice = SALE.enabled
+    ? (basePrice - SALE.discount).toFixed(2)
+    : basePrice.toFixed(2);
+
   card.innerHTML = `
-    <img src="${liquid.image || 'https://via.placeholder.com/120?text='+encodeURIComponent(liquid.name)}" 
-         alt="${liquid.name}" 
+    <img src="${liquid.image || 'https://via.placeholder.com/120?text='+encodeURIComponent(liquid.name)}"
+         alt="${liquid.name}"
          style="filter:${liquid.available === false ? 'grayscale(100%)' : 'none'}">
+
     <div class="liquid-name">${liquid.name}</div>
     <div class="liquid-desc">${liquid.desc}</div>
-    <div class="liquid-price">${liquid.available === false ? 'Нет в наличии' : liquid.price}</div>
+
+    ${
+      liquid.available === false
+        ? `<div class="liquid-price" style="color:gray">Нет в наличии</div>`
+        : SALE.enabled
+          ? `
+            <div style="color:#ff3b3b;font-weight:700">АКЦИЯ 🎄</div>
+            <div class="liquid-price" style="color:#ff3b3b">€${salePrice}</div>
+            <div style="color:#ff6b6b;font-size:13px">${SALE.bulkText}</div>
+          `
+          : `<div class="liquid-price">${liquid.price}</div>`
+    }
   `;
+
   list.appendChild(card);
 });
 
-  liquidsContainer.appendChild(list);
-  liquidsContainer.appendChild(backBtn);
-
-  brandsContainer.style.display = 'none';
-  liquidsContainer.style.display = 'flex';
-}
-
-// Назад к брендам
-backBtn.addEventListener('click', showBrands);
-
-// Изначально показываем бренды
-showBrands();
-</script>
-
-</body>
-</html>
 
 
 
