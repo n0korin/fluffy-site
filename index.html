@@ -1,190 +1,179 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Каталог жиж</title>
+
 <style>
-  /* Основные стили */
-  body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #24132a;
-    color: #bfa8d1;
-  }
-
-  /* Хедер */
-  header {
-    display: flex;
-    justify-content: space-between; /* слева логотип, справа ссылки */
-    align-items: center;
-    padding: 15px 20px;
-    background-color: #2e1733;
-  }
-
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
- .logo img {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%; /* <-- делает круглую */
-  object-fit: cover;  /* <-- картинка красиво вписывается */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #24132a;
+  color: #bfa8d1;
 }
 
+/* ===== HEADER ===== */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: #2e1733;
+}
 
-  .logo-text {
-    font-size: 1.4em;
-    font-weight: bold;
-    color: #fff;
-  }
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
-  .header-links {
-    display: flex;
-    gap: 10px;
-  }
+.logo img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
 
-  .header-links a {
-    text-decoration: none;
-    color: #fff;
-    background-color: #3e1f50;
-    padding: 8px 15px;
-    border-radius: 8px;
-    transition: 0.3s;
-  }
+.logo-text {
+  font-size: 1.4em;
+  font-weight: bold;
+  color: #fff;
+}
 
-  .header-links a:hover {
-    background-color: #6a3b87;
-  }
+.header-links a {
+  text-decoration: none;
+  color: #fff;
+  background-color: #3e1f50;
+  padding: 8px 15px;
+  border-radius: 8px;
+}
 
-  /* Контейнеры */
-  .container {
-    padding: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-  }
+/* ===== CONTAINERS ===== */
+.container {
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
 
-  .brand-card {
-    background-color: #2e1733;
-    border-radius: 12px;
-    width: 200px;
-    text-align: center;
-    padding: 15px;
-    cursor: pointer;
-    transition: 0.3s;
-  }
+/* ===== BRAND ===== */
+.brand-card {
+  background-color: #2e1733;
+  border-radius: 12px;
+  width: 200px;
+  text-align: center;
+  padding: 15px;
+  cursor: pointer;
+}
 
-  .brand-card:hover {
-    background-color: #461d4b;
-  }
+.brand-card img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
 
-  .brand-card img {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 10px;
-  }
+.brand-name {
+  margin-top: 10px;
+  font-weight: bold;
+}
 
-  .brand-name {
-    margin-top: 10px;
-    font-weight: bold;
-  }
+/* ===== LIQUID ===== */
+.liquid-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 20px;
+}
 
-  .liquid-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    justify-content: center;
-    margin-top: 20px;
-  }
+.liquid-card {
+  background-color: #2e1733;
+  border-radius: 10px;
+  padding: 10px;
+  width: 180px;
+  text-align: center;
+  position: relative;
+}
 
-  .liquid-card {
-    background-color: #2e1733;
-    border-radius: 10px;
-    padding: 10px;
-    width: 180px;
-    text-align: center;
-  }
+.liquid-card img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
+}
 
-  .liquid-card img {
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 10px;
-  }
+.liquid-name {
+  font-weight: bold;
+  margin-top: 6px;
+}
 
-  .liquid-name {
-    font-size: 1.1em;
-    margin-top: 8px;
-    font-weight: bold;
-  }
+.liquid-desc {
+  font-size: 0.9em;
+}
 
-  .liquid-desc {
-    font-size: 0.9em;
-    margin: 5px 0;
-  }
+.liquid-price {
+  font-weight: bold;
+  margin-top: 6px;
+}
 
-  .liquid-price {
-    font-size: 1em;
-    font-weight: bold;
-    color: #ffdd57;
-  }
+.liquid-price.promo {
+  color: red;
+}
 
-  /* Мобильная версия */
-  @media (max-width: 600px) {
-    .brand-card {
-      width: 140px;
-      padding: 10px;
-    }
+.liquid-price.soldout {
+  color: gray;
+}
 
-    .brand-card img {
-      width: 100px;
-      height: 100px;
-    }
+.promo-label {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: red;
+  color: white;
+  padding: 3px 6px;
+  font-size: 0.7em;
+  border-radius: 6px;
+}
 
-    .liquid-card {
-      width: 140px;
-      padding: 8px;
-    }
+.promo-note {
+  font-size: 0.75em;
+  color: #ffb3b3;
+}
 
-    .liquid-card img {
-      width: 100px;
-      height: 100px;
-    }
-  }
+/* ===== MOBILE ===== */
+@media (max-width: 600px) {
+  .brand-card { width: 140px; }
+  .brand-card img { width: 100px; height: 100px; }
+  .liquid-card { width: 140px; }
+  .liquid-card img { width: 100px; height: 100px; }
+}
 </style>
 </head>
+
 <body>
 
 <header>
   <div class="logo">
-    <img src="images/shop-icon.jpg" alt="logo">
+    <img src="images/shop-icon.jpg">
     <span class="logo-text">fluffy</span>
   </div>
   <div class="header-links">
-    <a href="https://t.me/Fluffy_Manager" target="_blank">Связь в Telegram</a>
+    <a href="https://t.me/Fluffy_Manager" target="_blank">Telegram</a>
     <a href="https://t.me/+jnN6mgE1BAUwNmIy" target="_blank">Отзывы</a>
   </div>
 </header>
 
-<div class="container" id="brandsContainer">
-  <!-- Карточки брендов будут вставляться через JS -->
-</div>
+<div class="container" id="brandsContainer"></div>
 
 <div class="container" id="liquidsContainer" style="display:none;">
-  <!-- Карточки жиж бренда будут вставляться через JS -->
-  <button id="backBtn" style="margin-top:20px; padding:10px 15px; border:none; border-radius:8px; background-color:#3e1f50; color:#fff; cursor:pointer;">Назад к брендам</button>
+  <button id="backBtn">Назад к брендам</button>
 </div>
 
-</body>
-</html>
-
 <script>
+/* ===== DATA ===== */
 const DATA = [ 
   {
     id: 'Vozol Prime',
@@ -222,583 +211,83 @@ const DATA = [
        {id:'e-jr', name:'Jasmine Raspberry', desc:'Жасмин с малиной.', price:'€15.99', image:'images/jasmineraspberry.jpeg', available: true}
     ]
   }
-];
+];;
 
+/* ===== PROMO ===== */
+const PROMO_ACTIVE = true;
+const PROMO_DISCOUNT = 1;
+const PROMO_NOTE = 'От покупки 2 и более — цена 14€';
 
+/* ===== ELEMENTS ===== */
+const brandsContainer = document.getElementById('brandsContainer');
+const liquidsContainer = document.getElementById('liquidsContainer');
+const backBtn = document.getElementById('backBtn');
 
- <!DOCTYPE html>
-<html lang="ru">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Каталог жиж</title>
-<style>
-  /* Основные стили */
-  body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #24132a;
-    color: #bfa8d1;
-  }
-
-  /* Хедер */
-  header {
-    display: flex;
-    justify-content: space-between; /* слева логотип, справа ссылки */
-    align-items: center;
-    padding: 15px 20px;
-    background-color: #2e1733;
-  }
-
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
- .logo img {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%; /* <-- делает круглую */
-  object-fit: cover;  /* <-- картинка красиво вписывается */
+/* ===== FUNCTIONS ===== */
+function showBrands() {
+  brandsContainer.innerHTML = '';
+  DATA.forEach(brand => {
+    const card = document.createElement('div');
+    card.className = 'brand-card';
+    card.innerHTML = `
+      <img src="${brand.image}">
+      <div class="brand-name">${brand.name}</div>
+    `;
+    card.onclick = () => showLiquids(brand);
+    brandsContainer.appendChild(card);
+  });
+  brandsContainer.style.display = 'flex';
+  liquidsContainer.style.display = 'none';
 }
 
-
-  .logo-text {
-    font-size: 1.4em;
-    font-weight: bold;
-    color: #fff;
-  }
-
-  .header-links {
-    display: flex;
-    gap: 10px;
-  }
-
-  .header-links a {
-    text-decoration: none;
-    color: #fff;
-    background-color: #3e1f50;
-    padding: 8px 15px;
-    border-radius: 8px;
-    transition: 0.3s;
-  }
-
-  .header-links a:hover {
-    background-color: #6a3b87;
-  }
-
-  /* Контейнеры */
-  .container {
-    padding: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-  }
-
-  .brand-card {
-    background-color: #2e1733;
-    border-radius: 12px;
-    width: 200px;
-    text-align: center;
-    padding: 15px;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-
-  .brand-card:hover {
-    background-color: #461d4b;
-  }
-
-  .brand-card img {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 10px;
-  }
-
-  .brand-name {
-    margin-top: 10px;
-    font-weight: bold;
-  }
-
-  .liquid-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    justify-content: center;
-    margin-top: 20px;
-  }
-
-  .liquid-card {
-    background-color: #2e1733;
-    border-radius: 10px;
-    padding: 10px;
-    width: 180px;
-    text-align: center;
-  }
-
-  .liquid-card img {
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 10px;
-  }
-
-  .liquid-name {
-    font-size: 1.1em;
-    margin-top: 8px;
-    font-weight: bold;
-  }
-
-  .liquid-desc {
-    font-size: 0.9em;
-    margin: 5px 0;
-  }
-
-  .liquid-price {
-    font-size: 1em;
-    font-weight: bold;
-    color: #ffdd57;
-  }
-
-  /* Мобильная версия */
-  @media (max-width: 600px) {
-    .brand-card {
-      width: 140px;
-      padding: 10px;
-    }
-
-    .brand-card img {
-      width: 100px;
-      height: 100px;
-    }
-
-    .liquid-card {
-      width: 140px;
-      padding: 8px;
-    }
-
-    .liquid-card img {
-      width: 100px;
-      height: 100px;
-    }
-  }
-</style>
-</head>
-<body>
-
-<header>
-  <div class="logo">
-    <img src="images/shop-icon.jpg" alt="logo">
-    <span class="logo-text">fluffy</span>
-  </div>
-  <div class="header-links">
-    <a href="https://t.me/Fluffy_Manager" target="_blank">Связь в Telegram</a>
-    <a href="https://t.me/+jnN6mgE1BAUwNmIy" target="_blank">Отзывы</a>
-  </div>
-</header>
-
-<div class="container" id="brandsContainer">
-  <!-- Карточки брендов будут вставляться через JS -->
-</div>
-
-<div class="container" id="liquidsContainer" style="display:none;">
-  <!-- Карточки жиж бренда будут вставляться через JS -->
-  <button id="backBtn" style="margin-top:20px; padding:10px 15px; border:none; border-radius:8px; background-color:#3e1f50; color:#fff; cursor:pointer;">Назад к брендам</button>
-</div>
-
-</body>
-</html>
-
-<script>
-const DATA = [ 
-  {
-    id: 'Vozol Prime',
-    name: 'Vozol Prime 5%',
-    short: 'Фруктовые и свежие вкусы от Vozol.',
-    image: 'images/vozol.JPG',
-    liquids: [
-      {id:'v-sk', name:'Strawberry Kiwi', desc:'Сочная клубника с киви.', price:'€15.99', image:'images/strawberrykiwi1.jpg', available: true},
-      {id:'v-b', name:'Berry', desc:'Ягодный микс.', price:'€15.99', image:'images/berry.jpg', available: true},
-      {id:'v-sic', name:'Strawberry Ice Cream', desc:'Клубника с мороженным.', price:'€15.99', image:'images/Strawberry Ice Creamvozol.webp', available: true},
-      {id:'v-mi', name:'Mint Ice', desc:'Мятный аромат.', price:'€15.99', image:'images/mint ice vozoll.webp', available: true},
-      {id:'v-mbv', name:'Mixed Berries', desc:'Микс ягод.', price:'€15.99', image:'images/mixed berries vozol.webp', available: true},
-      {id:'v-biv', name:'Blueberry Ice', desc:'Освежающая черника.', price:'€15.99', image:'images/blueberry ice vozol.jpg', available: true},
-      {id:'v-si', name:'Strawberry Ice', desc:'Клубника с мятой.', price:'€15.99', image:'images/strawberry ice vozol prime.jpg', available: true},
-      {id:'v-cherrycola', name:'Cherry Cola', desc:'Кола с вишней.', price:'€15.99', image:'images/cherry cola vozol prime.webp', available: true},
-      {id:'v-l777', name:'Love 7-7-7', desc:'Сладкий фруктовый микс.', price:'€15.99', image:'images/LOVEEE.jpg', available: true},
-      {id:'v-sai', name:'Sour Apple Ice', desc:'Кислое яблоко с холодком.', price:'€15.99', image:'images/sourappleice.jpg', available: true}
-    ]
-  },
-  {
-    id: 'Elfliq',
-    name: 'Elfliq 5%',
-    short: 'Лёгкие и утончённые вкусы для ежедневного парения.',
-    image: 'images/elfliq.jpg',
-    liquids: [
-       {id:'e-sb', name:'Strawberry Banana', desc:'Клубника с бананом.', price:'€15.99', image:'images/strawberry banana elfliq.webp', available: true},
-       {id:'e-mp', name:'Mango Peach', desc:'Манго с персиком.', price:'€15.99', image:'images/mahgo peach elfliq.webp', available: true},
-       {id:'e-chc', name:'Cherry', desc:'Вишня.', price:'€15.99', image:'images/elfliq cherry.webp', available: true},
-       {id:'e-ap', name:'Aplle Peach', desc:'Яблоко с персиком.', price:'€15.99', image:'images/apple peach elfliq.avif', available: true},
-       {id:'e-bl', name:'Blueberry', desc:'Черника.', price:'€15.99', image:'images/blueberry elfliq.jpeg', available: true},
-       
-
-     
-       {id:'e-rl', name:'Raspberry Lychee', desc:'Малина с личи.', price:'€15.99', image:'images/raspberrylynchee.webp', available: true},
-       {id:'e-jr', name:'Jasmine Raspberry', desc:'Жасмин с малиной.', price:'€15.99', image:'images/jasmineraspberry.jpeg', available: true}
-    ]
-  }
-];
-
-
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-
-  const brandsContainer = document.getElementById('brandsContainer');
-  const liquidsContainer = document.getElementById('liquidsContainer');
-  const backBtn = document.getElementById('backBtn');
-
-  if (!brandsContainer || !liquidsContainer || !backBtn) {
-    console.error('Один из контейнеров не найден в HTML');
-    return;
-  }
-
-  /* ===== НАСТРОЙКИ АКЦИИ ===== */
-   <!DOCTYPE html>
-<html lang="ru">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Каталог жиж</title>
-<style>
-  /* Основные стили */
-  body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #24132a;
-    color: #bfa8d1;
-  }
-
-  /* Хедер */
-  header {
-    display: flex;
-    justify-content: space-between; /* слева логотип, справа ссылки */
-    align-items: center;
-    padding: 15px 20px;
-    background-color: #2e1733;
-  }
-
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
- .logo img {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%; /* <-- делает круглую */
-  object-fit: cover;  /* <-- картинка красиво вписывается */
-}
-
-
-  .logo-text {
-    font-size: 1.4em;
-    font-weight: bold;
-    color: #fff;
-  }
-
-  .header-links {
-    display: flex;
-    gap: 10px;
-  }
-
-  .header-links a {
-    text-decoration: none;
-    color: #fff;
-    background-color: #3e1f50;
-    padding: 8px 15px;
-    border-radius: 8px;
-    transition: 0.3s;
-  }
-
-  .header-links a:hover {
-    background-color: #6a3b87;
-  }
-
-  /* Контейнеры */
-  .container {
-    padding: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-  }
-
-  .brand-card {
-    background-color: #2e1733;
-    border-radius: 12px;
-    width: 200px;
-    text-align: center;
-    padding: 15px;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-
-  .brand-card:hover {
-    background-color: #461d4b;
-  }
-
-  .brand-card img {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 10px;
-  }
-
-  .brand-name {
-    margin-top: 10px;
-    font-weight: bold;
-  }
-
-  .liquid-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    justify-content: center;
-    margin-top: 20px;
-  }
-
-  .liquid-card {
-    background-color: #2e1733;
-    border-radius: 10px;
-    padding: 10px;
-    width: 180px;
-    text-align: center;
-  }
-
-  .liquid-card img {
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 10px;
-  }
-
-  .liquid-name {
-    font-size: 1.1em;
-    margin-top: 8px;
-    font-weight: bold;
-  }
-
-  .liquid-desc {
-    font-size: 0.9em;
-    margin: 5px 0;
-  }
-
-  .liquid-price {
-    font-size: 1em;
-    font-weight: bold;
-    color: #ffdd57;
-  }
-
-  /* Мобильная версия */
-  @media (max-width: 600px) {
-    .brand-card {
-      width: 140px;
-      padding: 10px;
-    }
-
-    .brand-card img {
-      width: 100px;
-      height: 100px;
-    }
-
-    .liquid-card {
-      width: 140px;
-      padding: 8px;
-    }
-
-    .liquid-card img {
-      width: 100px;
-      height: 100px;
-    }
-  }
-</style>
-</head>
-<body>
-
-<header>
-  <div class="logo">
-    <img src="images/shop-icon.jpg" alt="logo">
-    <span class="logo-text">fluffy</span>
-  </div>
-  <div class="header-links">
-    <a href="https://t.me/Fluffy_Manager" target="_blank">Связь в Telegram</a>
-    <a href="https://t.me/+jnN6mgE1BAUwNmIy" target="_blank">Отзывы</a>
-  </div>
-</header>
-
-<div class="container" id="brandsContainer">
-  <!-- Карточки брендов будут вставляться через JS -->
-</div>
-
-<div class="container" id="liquidsContainer" style="display:none;">
-  <!-- Карточки жиж бренда будут вставляться через JS -->
-  <button id="backBtn" style="margin-top:20px; padding:10px 15px; border:none; border-radius:8px; background-color:#3e1f50; color:#fff; cursor:pointer;">Назад к брендам</button>
-</div>
-
-</body>
-</html>
-
-<script>
-const DATA = [ 
-  {
-    id: 'Vozol Prime',
-    name: 'Vozol Prime 5%',
-    short: 'Фруктовые и свежие вкусы от Vozol.',
-    image: 'images/vozol.JPG',
-    liquids: [
-      {id:'v-sk', name:'Strawberry Kiwi', desc:'Сочная клубника с киви.', price:'€15.99', image:'images/strawberrykiwi1.jpg', available: true},
-      {id:'v-b', name:'Berry', desc:'Ягодный микс.', price:'€15.99', image:'images/berry.jpg', available: true},
-      {id:'v-sic', name:'Strawberry Ice Cream', desc:'Клубника с мороженным.', price:'€15.99', image:'images/Strawberry Ice Creamvozol.webp', available: true},
-      {id:'v-mi', name:'Mint Ice', desc:'Мятный аромат.', price:'€15.99', image:'images/mint ice vozoll.webp', available: true},
-      {id:'v-mbv', name:'Mixed Berries', desc:'Микс ягод.', price:'€15.99', image:'images/mixed berries vozol.webp', available: true},
-      {id:'v-biv', name:'Blueberry Ice', desc:'Освежающая черника.', price:'€15.99', image:'images/blueberry ice vozol.jpg', available: true},
-      {id:'v-si', name:'Strawberry Ice', desc:'Клубника с мятой.', price:'€15.99', image:'images/strawberry ice vozol prime.jpg', available: true},
-      {id:'v-cherrycola', name:'Cherry Cola', desc:'Кола с вишней.', price:'€15.99', image:'images/cherry cola vozol prime.webp', available: true},
-      {id:'v-l777', name:'Love 7-7-7', desc:'Сладкий фруктовый микс.', price:'€15.99', image:'images/LOVEEE.jpg', available: true},
-      {id:'v-sai', name:'Sour Apple Ice', desc:'Кислое яблоко с холодком.', price:'€15.99', image:'images/sourappleice.jpg', available: true}
-    ]
-  },
-  {
-    id: 'Elfliq',
-    name: 'Elfliq 5%',
-    short: 'Лёгкие и утончённые вкусы для ежедневного парения.',
-    image: 'images/elfliq.jpg',
-    liquids: [
-       {id:'e-sb', name:'Strawberry Banana', desc:'Клубника с бананом.', price:'€15.99', image:'images/strawberry banana elfliq.webp', available: true},
-       {id:'e-mp', name:'Mango Peach', desc:'Манго с персиком.', price:'€15.99', image:'images/mahgo peach elfliq.webp', available: true},
-       {id:'e-chc', name:'Cherry', desc:'Вишня.', price:'€15.99', image:'images/elfliq cherry.webp', available: true},
-       {id:'e-ap', name:'Aplle Peach', desc:'Яблоко с персиком.', price:'€15.99', image:'images/apple peach elfliq.avif', available: true},
-       {id:'e-bl', name:'Blueberry', desc:'Черника.', price:'€15.99', image:'images/blueberry elfliq.jpeg', available: true},
-       
-
-     
-       {id:'e-rl', name:'Raspberry Lychee', desc:'Малина с личи.', price:'€15.99', image:'images/raspberrylynchee.webp', available: true},
-       {id:'e-jr', name:'Jasmine Raspberry', desc:'Жасмин с малиной.', price:'€15.99', image:'images/jasmineraspberry.jpeg', available: true}
-    ]
-  }
-];
-
-
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-
-  const brandsContainer = document.getElementById('brandsContainer');
-  const liquidsContainer = document.getElementById('liquidsContainer');
-  const backBtn = document.getElementById('backBtn');
-
-  if (!brandsContainer || !liquidsContainer || !backBtn) {
-    console.error('Один из контейнеров не найден в HTML');
-    return;
-  }
-
-  /* ===== НАСТРОЙКИ АКЦИИ ===== */
-  const PROMO_ACTIVE = true;
-  const PROMO_DISCOUNT = 1;
-  const PROMO_TEXT = 'АКЦИЯ 🎄';
-  const PROMO_NOTE = 'От покупки 2 и более — цена 14€';
-
-  /* ===== ПОКАЗ БРЕНДОВ ===== */
-  function showBrands() {
-    brandsContainer.innerHTML = '';
-
-    DATA.forEach(brand => {
-      const card = document.createElement('div');
-      card.className = 'brand-card';
+function showLiquids(brand) {
+  liquidsContainer.innerHTML = '<button id="backBtn">Назад к брендам</button>';
+  const list = document.createElement('div');
+  list.className = 'liquid-list';
+
+  brand.liquids.forEach(liquid => {
+    const card = document.createElement('div');
+    card.className = 'liquid-card';
+
+    if (!liquid.available) {
       card.innerHTML = `
-        <img src="${brand.image}" alt="${brand.name}">
-        <div class="brand-name">${brand.name}</div>
+        <img src="${liquid.image}" style="filter:grayscale(100%)">
+        <div class="liquid-name">${liquid.name}</div>
+        <div class="liquid-price soldout">Нет в наличии</div>
       `;
-      card.addEventListener('click', () => showLiquids(brand));
-      brandsContainer.appendChild(card);
-    });
-
-    brandsContainer.style.display = 'flex';
-    liquidsContainer.style.display = 'none';
-  }
-
-  /* ===== ПОКАЗ ЖИЖ ===== */
-  function showLiquids(brand) {
-    liquidsContainer.innerHTML = '';
-
-    const title = document.createElement('h2');
-    title.textContent = brand.name + ' — ' + brand.short;
-    title.style.textAlign = 'center';
-    liquidsContainer.appendChild(title);
-
-    const list = document.createElement('div');
-    list.className = 'liquid-list';
-
-    brand.liquids.forEach(liquid => {
-      const card = document.createElement('div');
-      card.className = 'liquid-card';
-
-      const isAvailable = liquid.available !== false;
-
-      let priceHTML = '';
-      let promoHTML = '';
-
-      if (!isAvailable) {
-        priceHTML = `<div class="liquid-price soldout">Нет в наличии</div>`;
-      } else if (PROMO_ACTIVE) {
-        const original = parseFloat(liquid.price.replace('€',''));
-        const newPrice = (original - PROMO_DISCOUNT).toFixed(2);
-
-        priceHTML = `
-          <div class="liquid-price promo">€${newPrice}</div>
-          <div class="promo-note">${PROMO_NOTE}</div>
-        `;
-        promoHTML = `<div class="promo-label">${PROMO_TEXT}</div>`;
-      } else {
-        priceHTML = `<div class="liquid-price">${liquid.price}</div>`;
-      }
+    } else {
+      const base = parseFloat(liquid.price.replace('€',''));
+      const price = PROMO_ACTIVE ? (base - PROMO_DISCOUNT).toFixed(2) : base;
 
       card.innerHTML = `
-        ${promoHTML}
-        <img src="${liquid.image || 'https://via.placeholder.com/120?text='+encodeURIComponent(liquid.name)}"
-             alt="${liquid.name}"
-             style="filter:${!isAvailable ? 'grayscale(100%)' : 'none'}">
+        ${PROMO_ACTIVE ? '<div class="promo-label">АКЦИЯ</div>' : ''}
+        <img src="${liquid.image}">
         <div class="liquid-name">${liquid.name}</div>
         <div class="liquid-desc">${liquid.desc}</div>
-        ${priceHTML}
+        <div class="liquid-price promo">€${price}</div>
+        ${PROMO_ACTIVE ? `<div class="promo-note">${PROMO_NOTE}</div>` : ''}
       `;
+    }
 
-      list.appendChild(card);
-    });
+    list.appendChild(card);
+  });
 
-    liquidsContainer.appendChild(list);
-    liquidsContainer.appendChild(backBtn);
+  liquidsContainer.appendChild(list);
+  brandsContainer.style.display = 'none';
+  liquidsContainer.style.display = 'flex';
 
-    brandsContainer.style.display = 'none';
-    liquidsContainer.style.display = 'flex';
-  }
+  document.getElementById('backBtn').onclick = showBrands;
+}
 
-  /* ===== НАЗАД ===== */
-  backBtn.addEventListener('click', showBrands);
-
-  /* ===== СТАРТ ===== */
-  showBrands();
-
-});
+showBrands();
 </script>
 
 </body>
 </html>
+
+
+
+
 
 
 
