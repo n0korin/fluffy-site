@@ -15,7 +15,7 @@
 // https://t.me/username
 
 
-const TELEGRAM_LINK = "https://t.me/YOUR_MANAGER";
+const TELEGRAM_LINK = "https://t.me/Fluffy_Manager";
 
 
 
