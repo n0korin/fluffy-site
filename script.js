@@ -44,7 +44,7 @@ const PRODUCTS = [
 
 
         description:
-        "Premium vape liquid with rich flavour and smooth taste.",
+        "Премиальные жижи с популярными вкусами",
 
 
         flavours: [
