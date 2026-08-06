@@ -338,6 +338,18 @@ html {
 
 
 
+.image-box {
+
+    border-radius:28px;
+
+    overflow:hidden;
+
+    background:
+    rgba(255,255,255,.05);
+
+}
+
+
 .product-image {
 
     width:100%;
@@ -345,23 +357,6 @@ html {
     height:340px;
 
     object-fit:contain;
-
-    display:block;
-
-    margin-bottom:25px;
-
-
-    border-radius:28px;
-
-
-    background:
-    rgba(255,255,255,0.05);
-
-
-    padding:15px;
-
-
-    transition:.4s;
 
 }
 
