@@ -340,23 +340,25 @@ html {
 
 .product-image {
 
+    width: 100%;
 
-    width:100%;
+    height: 280px;
 
+    object-fit: cover;
 
-    height:340px;
+    border-radius: 28px;
 
+    display: block;
 
-    object-fit:contain;
-
-
-    display:block;
-
-
-    margin-bottom:25px;
+    margin-bottom: 20px;
 
 
-    transition:.4s;
+    background: rgba(255,255,255,0.05);
+
+
+    transition: 
+    transform .35s ease,
+    filter .35s ease;
 
 
 }
