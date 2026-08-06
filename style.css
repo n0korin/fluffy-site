@@ -340,27 +340,28 @@ html {
 
 .product-image {
 
+    width:100%;
 
-    padding: 15px;
+    height:340px;
+
+    object-fit:contain;
+
+    display:block;
+
+    margin-bottom:25px;
 
 
-    object-fit: contain;
+    border-radius:28px;
 
 
     background:
-
-    linear-gradient(
-        145deg,
-        rgba(255,255,255,.15),
-        rgba(255,255,255,.03)
-    );
+    rgba(255,255,255,0.05);
 
 
-    border:
-
-    1px solid rgba(255,255,255,.15);
+    padding:15px;
 
 
+    transition:.4s;
 
 }
 
