@@ -39,7 +39,7 @@ const PRODUCTS = [
 
         name: "VOZOL",
 
-        image: "./images/vozol.jpg",
+        image: "./images/vozol-Photoroom.png",
 
         description:
         "Качественная жидкость с насыщенным вкусом и приятным послевкусием.",
@@ -67,7 +67,7 @@ const PRODUCTS = [
 
         name: "ELFLIQ",
 
-        image: "./images/elfliq.png",
+        image: "./images/elfliq-nic-salts-30ml-Photoroom.png",
 
         description:
         "Популярные вкусы жидкости ELFLIQ с ярким ароматом и мягким вкусом.",
