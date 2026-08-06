@@ -1,38 +1,37 @@
 /*
-=================================
- VAPE SHOP SCRIPT
-=================================
+========================================
+ VAPE SHOP
+ MAIN SCRIPT
+ VERSION 2.0
+========================================
 */
 
 
-// ================================
+// =====================================
 // SETTINGS
-// ================================
+// =====================================
 
 
-// Сюда вставишь Telegram менеджера
-// пример:
-// https://t.me/username
-
+// Ссылка Telegram менеджера
+// меняешь только это
 
 const TELEGRAM_LINK = "https://t.me/Fluffy_Manager";
 
 
 
-// Цена одной жижи
+// Цена одной жидкости
 
 const PRODUCT_PRICE = 15.99;
 
 
 
 
-// ================================
+// =====================================
 // PRODUCTS DATABASE
-// ================================
+// =====================================
 
 
 const PRODUCTS = [
-
 
     {
 
@@ -40,11 +39,10 @@ const PRODUCTS = [
 
         name: "VOZOL",
 
-        image: "/images/vozol.jpg",
-
+        image: "images/vozol.jpg",
 
         description:
-        "Премиальные жижи с популярными вкусами",
+        "Качественная жидкость с насыщенным вкусом и приятным послевкусием.",
 
 
         flavours: [
@@ -63,48 +61,31 @@ const PRODUCTS = [
 
 
 
-
-
     {
 
+        id: "elfliq",
 
-        id:"elfliq",
+        name: "ELFLIQ",
 
-
-        name:"ELFLIQ",
-
-
-        image:"/images/elfliq.png",
-
+        image: "images/elfliq.png",
 
         description:
-        "Жижи хорошего качества с популярными вкусами",
+        "Популярные вкусы жидкости ELFLIQ с ярким ароматом и мягким вкусом.",
 
 
-
-        flavours:[
-
+        flavours: [
 
             "Grape",
-
             "Raspberry Lychee",
-
             "Blueberry Raspberry Pomegranate",
-
             "Strawberry Banana",
-
             "Jasmine Raspberry",
-
             "Pineapple Colada",
-
             "Green Grape Rose"
-
 
         ]
 
-
     }
-
 
 
 ];
@@ -112,11 +93,9 @@ const PRODUCTS = [
 
 
 
-
-// ================================
-// CART
-// ================================
-
+// =====================================
+// CART DATA
+// =====================================
 
 
 let cart = [];
@@ -125,61 +104,53 @@ let cart = [];
 
 
 
-
-
-// ================================
+// =====================================
 // HTML ELEMENTS
-// ================================
-
+// =====================================
 
 
 const productsContainer =
-document.getElementById("products");
-
+document.querySelector("#products");
 
 
 const cartCount =
-document.getElementById("cartCount");
-
+document.querySelector("#cartCount");
 
 
 const cartTotal =
-document.getElementById("cartTotal");
-
+document.querySelector("#cartTotal");
 
 
 const cartModal =
-document.getElementById("cartModal");
-
-
-
-const openCart =
-document.getElementById("openCart");
-
-
-
-const closeCart =
-document.getElementById("closeCart");
-
+document.querySelector("#cartModal");
 
 
 const cartItems =
-document.getElementById("cartItems");
-
+document.querySelector("#cartItems");
 
 
 const modalProducts =
-document.getElementById("modalProducts");
-
+document.querySelector("#modalProducts");
 
 
 const modalTotal =
-document.getElementById("modalTotal");
-
+document.querySelector("#modalTotal");
 
 
 const toast =
-document.getElementById("toast");
+document.querySelector("#toast");
+
+
+const openCartButton =
+document.querySelector("#openCart");
+
+
+const closeCartButton =
+document.querySelector("#closeCart");
+
+
+const telegramButton =
+document.querySelector("#telegramOrder");
 
 
 
@@ -187,19 +158,16 @@ document.getElementById("toast");
 
 
 
-
-// ================================
-// CREATE PRODUCTS
-// ================================
+// =====================================
+// CREATE PRODUCT CARDS
+// =====================================
 
 
 
 function renderProducts(){
 
 
-
     productsContainer.innerHTML = "";
-
 
 
 
@@ -207,10 +175,15 @@ function renderProducts(){
 
 
 
-        const card = document.createElement("div");
+        const card =
+        document.createElement("article");
 
 
-        card.className = "product-card";
+
+        card.className =
+        "product-card";
+
+
 
 
 
@@ -218,102 +191,116 @@ function renderProducts(){
 
 
 
-            <img 
-            class="product-image"
-            src="${product.image}"
-            alt="${product.name}"
-            >
+        <img
 
+        class="product-image"
 
+        src="${product.image}"
 
+        alt="${product.name}"
 
-            <h2 class="product-name">
-
-            ${product.name}
-
-            </h2>
+        >
 
 
 
 
 
-            <p class="product-description">
+        <h2 class="product-name">
 
-            ${product.description}
+        ${product.name}
 
-            </p>
-
-
+        </h2>
 
 
 
-            <div class="product-price">
 
-            ${PRODUCT_PRICE.toFixed(2)}€
+
+
+        <p class="product-description">
+
+        ${product.description}
+
+        </p>
+
+
+
+
+
+
+        <div class="product-price">
+
+        ${PRODUCT_PRICE.toFixed(2)}€
+
+        </div>
+
+
+
+
+
+
+
+        <div class="flavour-title">
+
+        Нажмите чтобы выбрать вкус
+
+        </div>
+
+
+
+
+
+
+        <div class="flavour-list">
+
+
+        ${
+
+        product.flavours.map(flavour => `
+
+
+            <div class="flavour-item">
+
+
+                <span>
+
+                ${flavour}
+
+                </span>
+
+
+
+                <button
+
+                class="add-button"
+
+                data-product="${product.name}"
+
+                data-flavour="${flavour}"
+
+                >
+
+                +
+
+                </button>
+
+
 
             </div>
 
 
 
+        `).join("")
+
+        }
 
 
-            <div class="flavour-title">
+        </div>
 
-            Выбери вкус
-
-            </div>
-
-
-
-
-
-            <div class="flavour-list">
-
-
-                ${
-
-                product.flavours.map(flavour => `
-
-
-                    <div class="flavour-item">
-
-
-                        <span class="flavour-name">
-
-                        ${flavour}
-
-                        </span>
-
-
-
-
-                        <button 
-
-                        class="add-button"
-
-                        onclick="addToCart('${product.name}','${flavour}')"
-
-                        >
-
-                        +
-
-                        </button>
-
-
-                    </div>
-
-
-                `).join("")
-
-                }
-
-
-
-            </div>
 
 
 
         `;
+
 
 
 
@@ -326,6 +313,11 @@ function renderProducts(){
 
 
 
+
+
+    activateAddButtons();
+
+
 }
 
 
@@ -333,9 +325,72 @@ function renderProducts(){
 
 
 
-// ================================
+// =====================================
+// ADD BUTTONS
+// =====================================
+
+
+
+function activateAddButtons(){
+
+
+
+    const buttons =
+
+    document.querySelectorAll(".add-button");
+
+
+
+
+    buttons.forEach(button => {
+
+
+
+        button.addEventListener(
+
+        "click",
+
+        ()=>{
+
+
+            const product =
+
+            button.dataset.product;
+
+
+
+            const flavour =
+
+            button.dataset.flavour;
+
+
+
+            addToCart(
+                product,
+                flavour
+            );
+
+
+
+        });
+
+
+
+    });
+
+
+
+}
+
+
+
+
+
+
+
+// =====================================
 // ADD TO CART
-// ================================
+// =====================================
 
 
 
@@ -343,19 +398,29 @@ function addToCart(product, flavour){
 
 
 
-    cart.push({
+    const item = {
+
+
+        id:
+        Date.now(),
 
 
         product,
 
         flavour,
 
-        price: PRODUCT_PRICE
+
+        price:
+        PRODUCT_PRICE
 
 
-    });
+
+    };
 
 
+
+
+    cart.push(item);
 
 
 
@@ -363,7 +428,9 @@ function addToCart(product, flavour){
 
 
 
-    showToast();
+    showToast(
+    "Товар добавлен в корзину"
+    );
 
 
 
@@ -374,9 +441,36 @@ function addToCart(product, flavour){
 
 
 
-// ================================
+// =====================================
+// CALCULATE TOTAL
+// =====================================
+
+
+
+function getTotal(){
+
+
+    return cart.reduce(
+
+        (sum,item)=>
+
+        sum + item.price,
+
+        0
+
+    );
+
+
+}
+
+
+
+
+
+
+// =====================================
 // UPDATE CART
-// ================================
+// =====================================
 
 
 
@@ -384,42 +478,37 @@ function updateCart(){
 
 
 
-    let total = 0;
+    const total =
+    getTotal();
 
 
 
 
-    cart.forEach(item => {
+    cartCount.textContent =
 
-
-        total += item.price;
-
-
-    });
+    `${cart.length} товаров`;
 
 
 
 
 
-    cartCount.innerHTML =
-
-    `${cart.length} products`;
-
-
-
-
-    cartTotal.innerHTML =
+    cartTotal.textContent =
 
     `${total.toFixed(2)}€`;
 
 
 
 
-    modalProducts.innerHTML = cart.length;
+
+    modalProducts.textContent =
+
+    cart.length;
 
 
 
-    modalTotal.innerHTML =
+
+
+    modalTotal.textContent =
 
     `${total.toFixed(2)}€`;
 
@@ -431,19 +520,11 @@ function updateCart(){
 
 
 
-
-
 }
 
-
-
-
-
-
-// ================================
-// RENDER CART ITEMS
-// ================================
-
+// =====================================
+// RENDER CART
+// =====================================
 
 
 function renderCart(){
@@ -453,18 +534,17 @@ function renderCart(){
 
 
 
+
     if(cart.length === 0){
 
 
         cartItems.innerHTML = `
 
+        <div class="empty-cart">
 
-        <p style="color:#aaa">
+            Корзина пока пустая
 
-        Твоя корзина пустая!
-
-        </p>
-
+        </div>
 
         `;
 
@@ -479,70 +559,82 @@ function renderCart(){
 
 
 
-    cart.forEach((item,index)=>{
+    cart.forEach(item => {
 
 
 
-        const element =
+        const cartElement =
+
         document.createElement("div");
 
 
 
-        element.className="cart-item";
+        cartElement.className =
+
+        "cart-item";
 
 
 
 
 
-        element.innerHTML = `
+        cartElement.innerHTML = `
 
 
 
-        <div>
+        <div class="cart-item-info">
 
 
-        <div class="cart-item-name">
+            <div class="cart-item-name">
 
-        ${item.product}
+            ${item.product}
 
-        </div>
-
-
-        <div style="color:#aaa">
-
-        ${item.flavour}
-
-        </div>
-
-
-        </div>
+            </div>
 
 
 
+            <div class="cart-item-flavour">
 
+            ${item.flavour}
 
-        <div>
-
-
-        ${item.price.toFixed(2)}€
-
-
-        <button 
-
-        class="remove-item"
-
-        onclick="removeItem(${index})"
-
-        >
-
-        ✕
-
-
-        </button>
-
+            </div>
 
 
         </div>
+
+
+
+
+
+
+        <div class="cart-item-right">
+
+
+            <span>
+
+            ${item.price.toFixed(2)}€
+
+            </span>
+
+
+
+
+
+            <button
+
+            class="remove-item"
+
+            data-id="${item.id}"
+
+            >
+
+            ✕
+
+            </button>
+
+
+
+        </div>
+
 
 
 
@@ -551,7 +643,76 @@ function renderCart(){
 
 
 
-        cartItems.appendChild(element);
+
+
+        cartItems.appendChild(cartElement);
+
+
+
+    });
+
+
+
+
+
+
+    activateRemoveButtons();
+
+
+
+}
+
+
+
+
+
+
+
+// =====================================
+// REMOVE BUTTONS
+// =====================================
+
+
+
+function activateRemoveButtons(){
+
+
+
+    const buttons =
+
+    document.querySelectorAll(
+    ".remove-item"
+    );
+
+
+
+
+    buttons.forEach(button => {
+
+
+
+        button.addEventListener(
+
+        "click",
+
+        ()=>{
+
+
+
+            const id =
+
+            Number(
+            button.dataset.id
+            );
+
+
+
+
+            removeFromCart(id);
+
+
+
+        });
 
 
 
@@ -560,15 +721,34 @@ function renderCart(){
 
 
 }
-// ================================
-// REMOVE ITEM
-// ================================
 
 
-function removeItem(index){
 
 
-    cart.splice(index,1);
+
+
+
+
+// =====================================
+// REMOVE FROM CART
+// =====================================
+
+
+
+function removeFromCart(id){
+
+
+
+    cart =
+
+    cart.filter(
+
+        item =>
+
+        item.id !== id
+
+    );
+
 
 
 
@@ -583,18 +763,69 @@ function removeItem(index){
 
 
 
-// ================================
-// CART OPEN / CLOSE
-// ================================
 
 
 
-openCart.addEventListener(
+// =====================================
+// OPEN CART
+// =====================================
+
+
+
+function openCart(){
+
+
+    cartModal.classList.add(
+    "active"
+    );
+
+
+}
+
+
+
+
+
+
+
+// =====================================
+// CLOSE CART
+// =====================================
+
+
+
+function closeCart(){
+
+
+    cartModal.classList.remove(
+    "active"
+    );
+
+
+}
+
+
+
+
+
+
+
+
+// =====================================
+// MODAL EVENTS
+// =====================================
+
+
+
+openCartButton.addEventListener(
+
 "click",
+
 ()=>{
 
 
-    cartModal.classList.add("active");
+    openCart();
+
 
 
 });
@@ -603,12 +834,17 @@ openCart.addEventListener(
 
 
 
-closeCart.addEventListener(
+
+
+closeCartButton.addEventListener(
+
 "click",
+
 ()=>{
 
 
-    cartModal.classList.remove("active");
+    closeCart();
+
 
 
 });
@@ -617,18 +853,21 @@ closeCart.addEventListener(
 
 
 
-// закрытие при клике вне окна
 
 
 cartModal.addEventListener(
+
 "click",
-(e)=>{
+
+(event)=>{
 
 
-    if(e.target === cartModal){
+    if(
+    event.target === cartModal
+    ){
 
 
-        cartModal.classList.remove("active");
+        closeCart();
 
 
     }
@@ -642,44 +881,26 @@ cartModal.addEventListener(
 
 
 
-// ================================
-// TELEGRAM ORDER
-// ================================
+
+
+// =====================================
+// TELEGRAM MESSAGE
+// =====================================
 
 
 
-document
-.getElementById("telegramOrder")
-.addEventListener(
-"click",
-()=>{
-
-
-
-    if(cart.length === 0){
-
-
-        showToast(
-        "Корзина пустая!"
-        );
-
-
-        return;
-
-
-    }
-
-
-
+function createTelegramMessage(){
 
 
 
     let message =
 
-`Привет!!
-хочу купить жижу:
+`Здравствуйте!
+
+Хочу заказать:
 
 `;
+
 
 
 
@@ -690,26 +911,14 @@ document
 
         message +=
 
-        `• ${item.product} - ${item.flavour}\n`;
+`• ${item.product} — ${item.flavour}
+`;
+
 
 
     });
 
 
-
-
-
-    let total = 0;
-
-
-
-    cart.forEach(item=>{
-
-
-        total += item.price;
-
-
-    });
 
 
 
@@ -719,13 +928,20 @@ document
 
 `
 
-Products: ${cart.length}
+Количество товаров:
+${cart.length}
 
-Subtotal:
-${total.toFixed(2)}€
+
+
+Стоимость:
+${getTotal().toFixed(2)}€
+
+
 
 Доставка:
-можем обсудить здесь
+
+Обсудим в переписке.
+
 `;
 
 
@@ -733,14 +949,71 @@ ${total.toFixed(2)}€
 
 
 
+    return message;
 
-    const url =
+
+
+}
+
+
+
+
+
+
+
+// =====================================
+// SEND TO TELEGRAM
+// =====================================
+
+
+
+telegramButton.addEventListener(
+
+"click",
+
+()=>{
+
+
+
+    if(cart.length === 0){
+
+
+
+        showToast(
+        "Корзина пустая"
+        );
+
+
+        return;
+
+
+
+    }
+
+
+
+
+
+
+    const message =
+
+    createTelegramMessage();
+
+
+
+
+
+    const telegramURL =
+
 
     TELEGRAM_LINK +
 
     "?text=" +
 
-    encodeURIComponent(message);
+    encodeURIComponent(
+    message
+    );
+
 
 
 
@@ -748,8 +1021,11 @@ ${total.toFixed(2)}€
 
 
     window.open(
-    url,
-    "_blank"
+
+        telegramURL,
+
+        "_blank"
+
     );
 
 
@@ -757,29 +1033,22 @@ ${total.toFixed(2)}€
 
 });
 
+// =====================================
+// TOAST NOTIFICATION
+// =====================================
+
+
+function showToast(text){
 
 
 
+    toast.textContent = text;
 
 
 
-
-
-// ================================
-// TOAST MESSAGE
-// ================================
-
-
-
-function showToast(text="Added to basket"){
-
-
-
-    toast.innerHTML = text;
-
-
-
-    toast.classList.add("show");
+    toast.classList.add(
+    "show"
+    );
 
 
 
@@ -788,7 +1057,9 @@ function showToast(text="Added to basket"){
     setTimeout(()=>{
 
 
-        toast.classList.remove("show");
+        toast.classList.remove(
+        "show"
+        );
 
 
     },1500);
@@ -803,14 +1074,173 @@ function showToast(text="Added to basket"){
 
 
 
-// ================================
-// START SHOP
-// ================================
+
+// =====================================
+// LOCAL STORAGE
+// =====================================
 
 
 
-renderProducts();
+function saveCart(){
 
 
 
-updateCart();
+    localStorage.setItem(
+
+        "vapeCart",
+
+        JSON.stringify(cart)
+
+    );
+
+
+}
+
+
+
+
+
+
+function loadCart(){
+
+
+
+    const savedCart =
+
+    localStorage.getItem(
+    "vapeCart"
+    );
+
+
+
+
+
+    if(savedCart){
+
+
+        cart =
+
+        JSON.parse(
+        savedCart
+        );
+
+
+    }
+
+
+
+}
+
+
+
+
+
+
+
+// =====================================
+// OVERRIDE UPDATE
+// =====================================
+
+
+// сохраняем корзину
+// каждый раз после изменения
+
+
+
+const oldUpdateCart = updateCart;
+
+
+
+updateCart = function(){
+
+
+    oldUpdateCart();
+
+
+    saveCart();
+
+
+
+};
+
+
+
+
+
+
+
+
+
+// =====================================
+// IMAGE ERROR HANDLING
+// =====================================
+
+
+
+document.addEventListener(
+
+"error",
+
+(event)=>{
+
+
+
+    if(
+    event.target.tagName === "IMG"
+    ){
+
+
+        event.target.src =
+        "images/no-image.png";
+
+
+    }
+
+
+
+},
+
+true
+
+);
+
+
+
+
+
+
+
+
+
+// =====================================
+// START APPLICATION
+// =====================================
+
+
+
+function startShop(){
+
+
+
+    loadCart();
+
+
+
+    renderProducts();
+
+
+
+    updateCart();
+
+
+
+}
+
+
+
+
+
+
+
+
+startShop();
