@@ -74,11 +74,11 @@ const PRODUCTS = [
         name:"ELFLIQ",
 
 
-        image:"/images/elfliq.jpg",
+        image:"/images/elfliq.png",
 
 
         description:
-        "High quality liquid collection with popular flavours.",
+        "Жижи хорошего качества с популярными вкусами",
 
 
 
@@ -259,7 +259,7 @@ function renderProducts(){
 
             <div class="flavour-title">
 
-            Choose flavour
+            Выбери вкус
 
             </div>
 
@@ -461,7 +461,7 @@ function renderCart(){
 
         <p style="color:#aaa">
 
-        Your basket is empty
+        Твоя корзина пустая!
 
         </p>
 
@@ -660,7 +660,7 @@ document
 
 
         showToast(
-        "Basket is empty"
+        "Корзина пустая!"
         );
 
 
@@ -676,9 +676,8 @@ document
 
     let message =
 
-`Hello!
-
-I would like to order:
+`Привет!!
+хочу купить жижу:
 
 `;
 
@@ -725,11 +724,8 @@ Products: ${cart.length}
 Subtotal:
 ${total.toFixed(2)}€
 
-Delivery:
-
-Manager will confirm delivery price depending on location.
-
-Thank you!
+Доставка:
+можем обсудить здесь
 `;
 
 
