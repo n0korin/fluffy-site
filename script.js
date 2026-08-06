@@ -186,9 +186,10 @@ function renderProducts(){
 
 
 
-
         card.innerHTML = `
 
+
+        <div class="image-box">
 
 
         <img
@@ -200,6 +201,9 @@ function renderProducts(){
         alt="${product.name}"
 
         >
+
+
+        </div>
 
 
 
