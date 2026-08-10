@@ -67,240 +67,26 @@
 
 </main>
 
-<!-- DELIVERY & PAYMENT -->
 
-<section class="info-section">
 
-    <div class="info-header">
-
-        <span class="info-label">
-            📦 ИНФОРМАЦИЯ
-        </span>
-
-        <h2>
-            Доставка и оплата
-        </h2>
-
-        <p>
-            Всё, что нужно знать перед оформлением заказа
-        </p>
-
-    </div>
-
-
-    <div class="info-grid">
-
-
-        <!-- PICKUP -->
-
-        <div class="info-card">
-
-            <div class="info-icon">
-                📍
-            </div>
-
-            <h3>
-                Самовывоз
-            </h3>
-
-            <p>
-                Самовывоз доступен только
-                <strong>в городе Лейпциг.</strong>
-            </p>
-
-        </div>
-
-
-
-        <!-- DELIVERY -->
-
-        <div class="info-card">
-
-            <div class="info-icon">
-                🚚
-            </div>
-
-            <h3>
-                Доставка по Германии
-            </h3>
-
-            <p>
-                Отправляем заказы в любой город
-                или населённый пункт Германии 🇩🇪
-            </p>
-
-            <div class="info-highlight">
-                Срок доставки — обычно <strong>2–3 дня.</strong>
-            </div>
-
-        </div>
-
-
-
-        <!-- PRICE -->
-
-        <div class="info-card">
-
-            <div class="info-icon">
-                💶
-            </div>
-
-            <h3>
-                Стоимость
-            </h3>
-
-            <div class="big-price">
-                16 €
-            </div>
-
-            <p>
-                Фиксированная цена за одну штуку.
-            </p>
-
-            <div class="info-note">
-
-                Нашли предложение дешевле у конкурентов?
-
-                Скиньте менеджеру подтверждение —
-                мы рассмотрим предложение и постараемся
-                сделать для вас цену ниже.
-
-            </div>
-
-        </div>
-
-
-
-        <!-- SHIPPING PRICE -->
-
-        <div class="info-card">
-
-            <div class="info-icon">
-                📮
-            </div>
-
-            <h3>
-                Стоимость доставки
-            </h3>
-
-            <div class="shipping-row">
-
-                <span>
-                    1 штука
-                </span>
-
-                <strong>
-                    3,50 €
-                </strong>
-
-            </div>
-
-
-            <div class="shipping-row free">
-
-                <span>
-                    От 2 штук
-                </span>
-
-                <strong>
-                    БЕСПЛАТНО 🎁
-                </strong>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- PAYMENT -->
-
-        <div class="info-card">
-
-            <div class="info-icon">
-                💳
-            </div>
-
-            <h3>
-                Оплата
-            </h3>
-
-            <p>
-                Оплатить заказ можно через
-                <strong>PayPal.</strong>
-            </p>
-
-            <p>
-                Если у вас немецкая банковская карта,
-                её можно привязать к PayPal и спокойно
-                совершить перевод.
-            </p>
-
-            <p>
-                Также принимаем оплату с любой
-                действующей украинской банковской карты:
-            </p>
-
-            <div class="banks">
-
-                🇺🇦 Monobank
-
-                <br>
-
-                🇺🇦 ПУМБ
-
-                <br>
-
-                🇺🇦 PrivatBank
-
-                <br>
-
-                🇺🇦 и другие украинские банки
-
-            </div>
-
-        </div>
-
-
-
-        <!-- QUESTIONS -->
-
-        <div class="info-card contact-card">
-
-            <div class="info-icon">
-                📩
-            </div>
-
-            <h3>
-                Остались вопросы?
-            </h3>
-
-            <p>
-                По всем вопросам, связанным с заказом,
-                доставкой, наличием или индивидуальной
-                ценой, обращайтесь к менеджеру.
-            </p>
-
-            <a
-                href="https://t.me/Fluffy_Manager"
-                target="_blank"
-                class="manager-button"
-            >
-                Написать менеджеру →
-            </a>
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-
-
-<!-- CART -->
+```html
+<!-- ===================================
+     BOTTOM BAR
+=================================== -->
 
 <div class="cart-bar" id="cartBar">
+
+    <button class="info-trigger" id="openInfo">
+
+        <span class="info-trigger-arrow">
+            ↑
+        </span>
+
+        <span>
+            Прочти это перед заказом
+        </span>
+
+    </button>
 
 
     <div class="cart-info">
@@ -309,25 +95,19 @@
             🛒
         </div>
 
-
         <div>
 
             <div class="cart-title">
                 Корзина
             </div>
 
-
             <div class="cart-count" id="cartCount">
-                0 продуктов
+                0 товаров
             </div>
 
         </div>
 
-
     </div>
-
-
-
 
 
     <div class="cart-price">
@@ -336,15 +116,269 @@
             0.00€
         </span>
 
-
         <button id="openCart">
-            Чек
+            Корзина
         </button>
 
     </div>
 
+</div>
+
+
+<!-- ===================================
+     INFORMATION DRAWER
+=================================== -->
+
+<div class="info-overlay" id="infoOverlay">
+
+    <div class="info-drawer">
+
+        <div class="info-drawer-header">
+
+            <div>
+
+                <div class="info-drawer-label">
+                    ПЕРЕД ЗАКАЗОМ
+                </div>
+
+                <h2>
+                    Доставка и оплата
+                </h2>
+
+            </div>
+
+
+            <button
+                class="info-close"
+                id="closeInfo"
+            >
+                ✕
+            </button>
+
+        </div>
+
+
+        <div class="info-content">
+
+
+            <div class="info-block">
+
+                <div class="info-block-icon">
+                    📍
+                </div>
+
+                <div>
+
+                    <h3>
+                        Самовывоз
+                    </h3>
+
+                    <p>
+                        Самовывоз доступен только
+                        <strong>в городе Лейпциг.</strong>
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="info-block">
+
+                <div class="info-block-icon">
+                    🚚
+                </div>
+
+                <div>
+
+                    <h3>
+                        Доставка по Германии
+                    </h3>
+
+                    <p>
+                        Отправляем заказы в любой город
+                        или населённый пункт Германии 🇩🇪
+                    </p>
+
+                    <div class="info-highlight">
+                        Срок доставки обычно
+                        <strong>2–3 дня.</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="info-block">
+
+                <div class="info-block-icon">
+                    💶
+                </div>
+
+                <div>
+
+                    <h3>
+                        Стоимость
+                    </h3>
+
+                    <p>
+                        Фиксированная цена —
+                        <strong>16 € за штуку.</strong>
+                    </p>
+
+                    <p class="info-muted">
+                        Если вы нашли предложение дешевле
+                        у конкурентов — скиньте менеджеру
+                        подтверждение. Мы рассмотрим
+                        предложение и постараемся сделать
+                        для вас цену ниже.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="info-block">
+
+                <div class="info-block-icon">
+                    📮
+                </div>
+
+                <div class="info-wide">
+
+                    <h3>
+                        Стоимость доставки
+                    </h3>
+
+                    <div class="delivery-prices">
+
+                        <div class="delivery-price">
+
+                            <span>
+                                1 штука
+                            </span>
+
+                            <strong>
+                                3,50 €
+                            </strong>
+
+                        </div>
+
+
+                        <div class="delivery-price free">
+
+                            <span>
+                                От 2 штук
+                            </span>
+
+                            <strong>
+                                БЕСПЛАТНО 🎁
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="info-block">
+
+                <div class="info-block-icon">
+                    💳
+                </div>
+
+                <div>
+
+                    <h3>
+                        Оплата
+                    </h3>
+
+                    <p>
+                        Оплатить заказ можно через
+                        <strong>PayPal.</strong>
+                    </p>
+
+                    <p>
+                        Если у вас немецкая банковская карта,
+                        её можно привязать к PayPal и спокойно
+                        совершить перевод.
+                    </p>
+
+                    <p>
+                        Также принимаем оплату с любой
+                        действующей украинской банковской карты:
+                    </p>
+
+                    <div class="banks-list">
+
+                        <span>🇺🇦 Monobank</span>
+
+                        <span>🇺🇦 ПУМБ</span>
+
+                        <span>🇺🇦 PrivatBank</span>
+
+                        <span>🇺🇦 и другие украинские банки</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="info-contact">
+
+                <div>
+
+                    <span class="info-contact-icon">
+                        📩
+                    </span>
+
+                    <div>
+
+                        <h3>
+                            Остались вопросы?
+                        </h3>
+
+                        <p>
+                            Заказ, доставка, наличие
+                            или индивидуальная цена —
+                            всё можно обсудить с менеджером.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <a
+                    href="https://t.me/Fluffy_Manager"
+                    target="_blank"
+                    class="manager-button"
+                >
+                    Написать менеджеру
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </div>
 
 </div>
+```
+
 
 
 
