@@ -42,7 +42,7 @@ const PRODUCTS = [
         image: "./images/vozol-Photoroom.png",
 
         description:
-        "Качественная жидкость с насыщенным вкусом и приятным послевкусием.",
+        "Качественная жидкость 30мл/5% с насыщенным вкусом и приятным послевкусием.",
 
 
         flavours: [
@@ -70,7 +70,7 @@ const PRODUCTS = [
         image: "./images/elfliq-nic-salts-30ml-Photoroom.png",
 
         description:
-        "Популярные вкусы жидкости ELFLIQ с ярким ароматом и мягким вкусом.",
+        "Популярные вкусы жидкости ELFLIQ 30мл/5% с ярким ароматом и мягким вкусом.",
 
 
         flavours: [
