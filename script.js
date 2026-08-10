@@ -1316,3 +1316,17 @@ function startShop(){
 
 
 startShop();
+
+// ===================================
+// OPEN INFO FROM LINK
+// ===================================
+
+const urlParams = new URLSearchParams(window.location.search);
+
+if (urlParams.get("info") === "1") {
+
+    infoOverlay.classList.add("active");
+
+    document.body.style.overflow = "hidden";
+
+}
