@@ -140,6 +140,74 @@ document.querySelector("#modalTotal");
 const toast =
 document.querySelector("#toast");
 
+// ================================
+// DELIVERY / PAYMENT PANEL
+// ================================
+
+const infoOverlay =
+document.getElementById("infoOverlay");
+
+const openInfo =
+document.getElementById("openInfo");
+
+const closeInfo =
+document.getElementById("closeInfo");
+
+
+openInfo.addEventListener(
+    "click",
+    () => {
+
+        infoOverlay.classList.add("active");
+
+        document.body.style.overflow = "hidden";
+
+    }
+);
+
+
+closeInfo.addEventListener(
+    "click",
+    () => {
+
+        infoOverlay.classList.remove("active");
+
+        document.body.style.overflow = "";
+
+    }
+);
+
+
+infoOverlay.addEventListener(
+    "click",
+    (event) => {
+
+        if (event.target === infoOverlay) {
+
+            infoOverlay.classList.remove("active");
+
+            document.body.style.overflow = "";
+
+        }
+
+    }
+);
+
+
+document.addEventListener(
+    "keydown",
+    (event) => {
+
+        if (event.key === "Escape") {
+
+            infoOverlay.classList.remove("active");
+
+            document.body.style.overflow = "";
+
+        }
+
+    }
+);
 
 const openCartButton =
 document.querySelector("#openCart");
