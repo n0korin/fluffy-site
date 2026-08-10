@@ -2,7 +2,6 @@
 ========================================
  VAPE SHOP
  MAIN SCRIPT
- VERSION 2.0
 ========================================
 */
 
@@ -11,30 +10,18 @@
 // SETTINGS
 // =====================================
 
-
-// Ссылка Telegram менеджера
-// меняешь только это
-
 const TELEGRAM_LINK = "https://t.me/Fluffy_Manager";
 
-
-
-// Цена одной жидкости
-
 const PRODUCT_PRICE = 15.99;
-
-
 
 
 // =====================================
 // PRODUCTS DATABASE
 // =====================================
 
-
 const PRODUCTS = [
 
     {
-
         id: "vozol",
 
         name: "VOZOL",
@@ -44,9 +31,7 @@ const PRODUCTS = [
         description:
         "Качественная жидкость 30мл/5% с насыщенным вкусом и приятным послевкусием.",
 
-
         flavours: [
-
             "Blueberry Ice",
             "Strawberry Ice Cream",
             "Mixed Berries",
@@ -54,15 +39,11 @@ const PRODUCTS = [
             "Watermelon Bubblegum",
             "Strawberry Kiwi",
             "Sour Apple Ice"
-
         ]
-
     },
 
 
-
     {
-
         id: "elfliq",
 
         name: "ELFLIQ",
@@ -72,9 +53,7 @@ const PRODUCTS = [
         description:
         "Популярные вкусы жидкости ELFLIQ 30мл/5% с ярким ароматом и мягким вкусом.",
 
-
         flavours: [
-
             "Grape",
             "Raspberry Lychee",
             "Blueberry Raspberry Pomegranate",
@@ -82,116 +61,118 @@ const PRODUCTS = [
             "Jasmine Raspberry",
             "Pineapple Colada",
             "Green Grape Rose"
-
         ]
-
     }
-
 
 ];
 
 
-
-
 // =====================================
-// CART DATA
+// CART
 // =====================================
-
 
 let cart = [];
-
-
-
 
 
 // =====================================
 // HTML ELEMENTS
 // =====================================
 
-
 const productsContainer =
-document.querySelector("#products");
-
+    document.querySelector("#products");
 
 const cartCount =
-document.querySelector("#cartCount");
-
+    document.querySelector("#cartCount");
 
 const cartTotal =
-document.querySelector("#cartTotal");
-
+    document.querySelector("#cartTotal");
 
 const cartModal =
-document.querySelector("#cartModal");
-
+    document.querySelector("#cartModal");
 
 const cartItems =
-document.querySelector("#cartItems");
-
+    document.querySelector("#cartItems");
 
 const modalProducts =
-document.querySelector("#modalProducts");
-
+    document.querySelector("#modalProducts");
 
 const modalTotal =
-document.querySelector("#modalTotal");
-
+    document.querySelector("#modalTotal");
 
 const toast =
-document.querySelector("#toast");
+    document.querySelector("#toast");
 
-// ================================
-// DELIVERY / PAYMENT PANEL
-// ================================
+
+// =====================================
+// INFO DRAWER
+// =====================================
 
 const infoOverlay =
-document.getElementById("infoOverlay");
+    document.querySelector("#infoOverlay");
 
 const openInfo =
-document.getElementById("openInfo");
+    document.querySelector("#openInfo");
 
 const closeInfo =
-document.getElementById("closeInfo");
+    document.querySelector("#closeInfo");
 
 
-openInfo.addEventListener(
-    "click",
-    () => {
+function openInfoPanel() {
 
-        infoOverlay.classList.add("active");
+    if (!infoOverlay) return;
 
-        document.body.style.overflow = "hidden";
+    infoOverlay.classList.add("active");
 
-    }
-);
+    document.body.style.overflow = "hidden";
+}
 
 
-closeInfo.addEventListener(
-    "click",
-    () => {
+function closeInfoPanel() {
 
-        infoOverlay.classList.remove("active");
+    if (!infoOverlay) return;
 
-        document.body.style.overflow = "";
+    infoOverlay.classList.remove("active");
 
-    }
-);
+    document.body.style.overflow = "";
+}
 
 
-infoOverlay.addEventListener(
-    "click",
-    (event) => {
+if (openInfo) {
 
-        if (event.target === infoOverlay) {
+    openInfo.addEventListener(
+        "click",
+        openInfoPanel
+    );
 
-            infoOverlay.classList.remove("active");
+}
 
-            document.body.style.overflow = "";
+
+if (closeInfo) {
+
+    closeInfo.addEventListener(
+        "click",
+        closeInfoPanel
+    );
+
+}
+
+
+if (infoOverlay) {
+
+    infoOverlay.addEventListener(
+        "click",
+        (event) => {
+
+            if (event.target === infoOverlay) {
+
+                closeInfoPanel();
+
+            }
 
         }
+    );
 
-    }
-);
+}
 
 
 document.addEventListener(
@@ -200,770 +181,459 @@ document.addEventListener(
 
         if (event.key === "Escape") {
 
-            infoOverlay.classList.remove("active");
-
-            document.body.style.overflow = "";
+            closeInfoPanel();
 
         }
 
     }
 );
 
-const openCartButton =
-document.querySelector("#openCart");
 
+// =====================================
+// CART BUTTONS
+// =====================================
+
+const openCartButton =
+    document.querySelector("#openCart");
 
 const closeCartButton =
-document.querySelector("#closeCart");
-
+    document.querySelector("#closeCart");
 
 const telegramButton =
-document.querySelector("#telegramOrder");
-
-
-
-
-
+    document.querySelector("#telegramOrder");
 
 
 // =====================================
-// CREATE PRODUCT CARDS
+// RENDER PRODUCTS
 // =====================================
 
-
-
-function renderProducts(){
-
+function renderProducts() {
 
     productsContainer.innerHTML = "";
 
 
-
     PRODUCTS.forEach(product => {
 
-
-
         const card =
-        document.createElement("article");
-
+            document.createElement("article");
 
 
         card.className =
-        "product-card";
-
-
+            "product-card";
 
 
         card.innerHTML = `
 
+            <div class="image-box">
 
-        <div class="image-box">
-
-
-        <img
-
-        class="product-image"
-
-        src="${product.image}"
-
-        alt="${product.name}"
-
-        >
-
-
-        </div>
-
-
-
-
-
-        <h2 class="product-name">
-
-        ${product.name}
-
-        </h2>
-
-
-
-
-
-
-        <p class="product-description">
-
-        ${product.description}
-
-        </p>
-
-
-
-
-
-
-        <div class="product-price">
-
-        ${PRODUCT_PRICE.toFixed(2)}€
-
-        </div>
-
-
-
-
-
-
-
-        <div class="flavour-title">
-
-        Нажмите чтобы выбрать вкус
-
-        </div>
-
-
-
-
-
-
-        <div class="flavour-list">
-
-
-        ${
-
-        product.flavours.map(flavour => `
-
-
-            <div class="flavour-item">
-
-
-                <span>
-
-                ${flavour}
-
-                </span>
-
-
-
-                <button
-
-                class="add-button"
-
-                data-product="${product.name}"
-
-                data-flavour="${flavour}"
-
+                <img
+                    class="product-image"
+                    src="${product.image}"
+                    alt="${product.name}"
                 >
-
-                +
-
-                </button>
-
-
 
             </div>
 
 
-
-        `).join("")
-
-        }
-
-
-        </div>
+            <h2 class="product-name">
+                ${product.name}
+            </h2>
 
 
+            <p class="product-description">
+                ${product.description}
+            </p>
 
+
+            <div class="product-price">
+                ${PRODUCT_PRICE.toFixed(2)}€
+            </div>
+
+
+            <div class="flavour-title">
+                Нажмите чтобы выбрать вкус
+            </div>
+
+
+            <div class="flavour-list">
+
+                ${product.flavours.map(flavour => `
+
+                    <div class="flavour-item">
+
+                        <span class="flavour-name">
+                            ${flavour}
+                        </span>
+
+                        <button
+                            class="add-button"
+                            data-product="${product.name}"
+                            data-flavour="${flavour}"
+                        >
+                            +
+                        </button>
+
+                    </div>
+
+                `).join("")}
+
+            </div>
 
         `;
 
 
-
-
-
         productsContainer.appendChild(card);
-
-
 
     });
 
 
-
-
-
     activateAddButtons();
 
-
 }
-
-
-
-
 
 
 // =====================================
 // ADD BUTTONS
 // =====================================
 
-
-
-function activateAddButtons(){
-
-
+function activateAddButtons() {
 
     const buttons =
-
-    document.querySelectorAll(".add-button");
-
-
+        document.querySelectorAll(".add-button");
 
 
     buttons.forEach(button => {
 
-
-
         button.addEventListener(
+            "click",
+            () => {
 
-        "click",
+                const product =
+                    button.dataset.product;
 
-        ()=>{
-
-
-            const product =
-
-            button.dataset.product;
-
+                const flavour =
+                    button.dataset.flavour;
 
 
-            const flavour =
+                addToCart(
+                    product,
+                    flavour
+                );
 
-            button.dataset.flavour;
-
-
-
-            addToCart(
-                product,
-                flavour
-            );
-
-
-
-        });
-
-
+            }
+        );
 
     });
 
-
-
 }
-
-
-
-
-
 
 
 // =====================================
 // ADD TO CART
 // =====================================
 
-
-
-function addToCart(product, flavour){
-
-
+function addToCart(product, flavour) {
 
     const item = {
 
-
-        id:
-        Date.now(),
-
+        id: Date.now(),
 
         product,
 
         flavour,
 
-
-        price:
-        PRODUCT_PRICE
-
-
+        price: PRODUCT_PRICE
 
     };
-
-
 
 
     cart.push(item);
 
 
-
     updateCart();
 
 
-
     showToast(
-    "Товар добавлен в корзину"
+        "Товар добавлен в корзину"
     );
-
-
 
 }
 
 
-
-
-
-
 // =====================================
-// CALCULATE TOTAL
+// TOTAL
 // =====================================
 
-
-
-function getTotal(){
-
+function getTotal() {
 
     return cart.reduce(
 
-        (sum,item)=>
-
-        sum + item.price,
+        (sum, item) =>
+            sum + item.price,
 
         0
 
     );
 
-
 }
-
-
-
-
 
 
 // =====================================
 // UPDATE CART
 // =====================================
 
-
-
-function updateCart(){
-
-
+function updateCart() {
 
     const total =
-    getTotal();
+        getTotal();
 
 
+    if (cartCount) {
+
+        cartCount.textContent =
+            `${cart.length} товаров`;
+
+    }
 
 
-    cartCount.textContent =
+    if (cartTotal) {
 
-    `${cart.length} товаров`;
+        cartTotal.textContent =
+            `${total.toFixed(2)}€`;
 
-
-
-
-
-    cartTotal.textContent =
-
-    `${total.toFixed(2)}€`;
+    }
 
 
+    if (modalProducts) {
+
+        modalProducts.textContent =
+            cart.length;
+
+    }
 
 
+    if (modalTotal) {
 
-    modalProducts.textContent =
+        modalTotal.textContent =
+            `${total.toFixed(2)}€`;
 
-    cart.length;
-
-
-
-
-
-    modalTotal.textContent =
-
-    `${total.toFixed(2)}€`;
-
-
-
+    }
 
 
     renderCart();
 
-
+    saveCart();
 
 }
+
 
 // =====================================
 // RENDER CART
 // =====================================
 
+function renderCart() {
 
-function renderCart(){
+    if (!cartItems) return;
 
 
     cartItems.innerHTML = "";
 
 
-
-
-    if(cart.length === 0){
-
+    if (cart.length === 0) {
 
         cartItems.innerHTML = `
 
-        <div class="empty-cart">
-
-            Корзина пока пустая
-
-        </div>
+            <div class="empty-cart">
+                Корзина пока пустая
+            </div>
 
         `;
 
-
         return;
-
 
     }
 
 
-
-
-
-
     cart.forEach(item => {
 
-
-
         const cartElement =
-
-        document.createElement("div");
-
+            document.createElement("div");
 
 
         cartElement.className =
-
-        "cart-item";
-
-
-
+            "cart-item";
 
 
         cartElement.innerHTML = `
 
+            <div class="cart-item-info">
 
+                <div class="cart-item-name">
+                    ${item.product}
+                </div>
 
-        <div class="cart-item-info">
-
-
-            <div class="cart-item-name">
-
-            ${item.product}
-
-            </div>
-
-
-
-            <div class="cart-item-flavour">
-
-            ${item.flavour}
+                <div class="cart-item-flavour">
+                    ${item.flavour}
+                </div>
 
             </div>
 
 
-        </div>
+            <div class="cart-item-right">
 
+                <span>
+                    ${item.price.toFixed(2)}€
+                </span>
 
+                <button
+                    class="remove-item"
+                    data-id="${item.id}"
+                >
+                    ✕
+                </button>
 
-
-
-
-        <div class="cart-item-right">
-
-
-            <span>
-
-            ${item.price.toFixed(2)}€
-
-            </span>
-
-
-
-
-
-            <button
-
-            class="remove-item"
-
-            data-id="${item.id}"
-
-            >
-
-            ✕
-
-            </button>
-
-
-
-        </div>
-
-
-
+            </div>
 
         `;
 
 
-
-
-
-
         cartItems.appendChild(cartElement);
-
-
 
     });
 
 
-
-
-
-
     activateRemoveButtons();
 
-
-
 }
-
-
-
-
-
 
 
 // =====================================
 // REMOVE BUTTONS
 // =====================================
 
-
-
-function activateRemoveButtons(){
-
-
+function activateRemoveButtons() {
 
     const buttons =
-
-    document.querySelectorAll(
-    ".remove-item"
-    );
-
-
+        document.querySelectorAll(
+            ".remove-item"
+        );
 
 
     buttons.forEach(button => {
 
-
-
         button.addEventListener(
+            "click",
+            () => {
 
-        "click",
-
-        ()=>{
-
-
-
-            const id =
-
-            Number(
-            button.dataset.id
-            );
+                const id =
+                    Number(
+                        button.dataset.id
+                    );
 
 
+                removeFromCart(id);
 
-
-            removeFromCart(id);
-
-
-
-        });
-
-
+            }
+        );
 
     });
 
-
-
 }
-
-
-
-
-
-
 
 
 // =====================================
 // REMOVE FROM CART
 // =====================================
 
-
-
-function removeFromCart(id){
-
-
+function removeFromCart(id) {
 
     cart =
-
-    cart.filter(
-
-        item =>
-
-        item.id !== id
-
-    );
-
-
+        cart.filter(
+            item =>
+                item.id !== id
+        );
 
 
     updateCart();
 
-
-
 }
-
-
-
-
-
-
-
 
 
 // =====================================
 // OPEN CART
 // =====================================
 
+function openCart() {
 
+    if (!cartModal) return;
 
-function openCart(){
-
-
-    cartModal.classList.add(
-    "active"
-    );
-
+    cartModal.classList.add("active");
 
 }
-
-
-
-
-
 
 
 // =====================================
 // CLOSE CART
 // =====================================
 
+function closeCart() {
 
+    if (!cartModal) return;
 
-function closeCart(){
-
-
-    cartModal.classList.remove(
-    "active"
-    );
-
+    cartModal.classList.remove("active");
 
 }
 
 
-
-
-
-
-
-
 // =====================================
-// MODAL EVENTS
+// CART EVENTS
 // =====================================
 
+if (openCartButton) {
+
+    openCartButton.addEventListener(
+        "click",
+        openCart
+    );
+
+}
 
 
-openCartButton.addEventListener(
+if (closeCartButton) {
 
-"click",
+    closeCartButton.addEventListener(
+        "click",
+        closeCart
+    );
 
-()=>{
-
-
-    openCart();
-
-
-
-});
+}
 
 
+if (cartModal) {
 
+    cartModal.addEventListener(
+        "click",
+        (event) => {
 
+            if (
+                event.target === cartModal
+            ) {
 
+                closeCart();
 
+            }
 
-closeCartButton.addEventListener(
+        }
+    );
 
-"click",
-
-()=>{
-
-
-    closeCart();
-
-
-
-});
-
-
-
-
-
-
-
-cartModal.addEventListener(
-
-"click",
-
-(event)=>{
-
-
-    if(
-    event.target === cartModal
-    ){
-
-
-        closeCart();
-
-
-    }
-
-
-});
-
-
-
-
-
-
-
+}
 
 
 // =====================================
 // TELEGRAM MESSAGE
 // =====================================
 
-
-
-function createTelegramMessage(){
-
-
+function createTelegramMessage() {
 
     let message =
 
@@ -974,26 +644,12 @@ function createTelegramMessage(){
 `;
 
 
-
-
-
-
-    cart.forEach(item=>{
-
+    cart.forEach(item => {
 
         message +=
-
-`• ${item.product} — ${item.flavour}
-`;
-
-
+            `• ${item.product} — ${item.flavour}\n`;
 
     });
-
-
-
-
-
 
 
     message +=
@@ -1003,330 +659,183 @@ function createTelegramMessage(){
 Количество товаров:
 ${cart.length}
 
-
-
 Стоимость:
 ${getTotal().toFixed(2)}€
 
-
-
 Доставка:
-
 Обсудим в переписке.
-
 `;
-
-
-
-
 
 
     return message;
 
-
-
 }
-
-
-
-
-
 
 
 // =====================================
 // SEND TO TELEGRAM
 // =====================================
 
+if (telegramButton) {
+
+    telegramButton.addEventListener(
+        "click",
+        () => {
+
+            if (cart.length === 0) {
+
+                showToast(
+                    "Корзина пустая"
+                );
+
+                return;
+
+            }
 
 
-telegramButton.addEventListener(
-
-"click",
-
-()=>{
+            const message =
+                createTelegramMessage();
 
 
-
-    if(cart.length === 0){
-
-
-
-        showToast(
-        "Корзина пустая"
-        );
+            const telegramURL =
+                TELEGRAM_LINK +
+                "?text=" +
+                encodeURIComponent(message);
 
 
-        return;
+            window.open(
+                telegramURL,
+                "_blank"
+            );
 
-
-
-    }
-
-
-
-
-
-
-    const message =
-
-    createTelegramMessage();
-
-
-
-
-
-    const telegramURL =
-
-
-    TELEGRAM_LINK +
-
-    "?text=" +
-
-    encodeURIComponent(
-    message
+        }
     );
 
+}
 
-
-
-
-
-
-    window.open(
-
-        telegramURL,
-
-        "_blank"
-
-    );
-
-
-
-
-});
 
 // =====================================
-// TOAST NOTIFICATION
+// TOAST
 // =====================================
 
+function showToast(text) {
 
-function showToast(text){
-
+    if (!toast) return;
 
 
     toast.textContent = text;
 
 
-
-    toast.classList.add(
-    "show"
-    );
+    toast.classList.add("show");
 
 
+    setTimeout(() => {
 
+        toast.classList.remove("show");
 
-
-    setTimeout(()=>{
-
-
-        toast.classList.remove(
-        "show"
-        );
-
-
-    },1500);
-
-
+    }, 1500);
 
 }
-
-
-
-
-
-
 
 
 // =====================================
 // LOCAL STORAGE
 // =====================================
 
-
-
-function saveCart(){
-
-
+function saveCart() {
 
     localStorage.setItem(
-
         "vapeCart",
-
         JSON.stringify(cart)
-
     );
-
 
 }
 
 
-
-
-
-
-function loadCart(){
-
-
+function loadCart() {
 
     const savedCart =
-
-    localStorage.getItem(
-    "vapeCart"
-    );
-
-
-
-
-
-    if(savedCart){
-
-
-        cart =
-
-        JSON.parse(
-        savedCart
+        localStorage.getItem(
+            "vapeCart"
         );
 
 
+    if (savedCart) {
+
+        try {
+
+            cart =
+                JSON.parse(savedCart);
+
+        } catch {
+
+            cart = [];
+
+        }
+
     }
-
-
 
 }
 
 
-
-
-
-
-
 // =====================================
-// OVERRIDE UPDATE
+// IMAGE ERROR
 // =====================================
-
-
-// сохраняем корзину
-// каждый раз после изменения
-
-
-
-const oldUpdateCart = updateCart;
-
-
-
-updateCart = function(){
-
-
-    oldUpdateCart();
-
-
-    saveCart();
-
-
-
-};
-
-
-
-
-
-
-
-
-
-// =====================================
-// IMAGE ERROR HANDLING
-// =====================================
-
-
 
 document.addEventListener(
+    "error",
+    (event) => {
 
-"error",
+        if (
+            event.target.tagName === "IMG"
+        ) {
 
-(event)=>{
+            event.target.src =
+                "./images/no-image.png";
 
+        }
 
-
-    if(
-    event.target.tagName === "IMG"
-    ){
-
-
-        event.target.src =
-        "images/no-image.png";
-
-
-    }
-
-
-
-},
-
-true
-
+    },
+    true
 );
 
 
-
-
-
-
-
-
-
 // =====================================
-// START APPLICATION
+// START SHOP
 // =====================================
 
-
-
-function startShop(){
-
-
+function startShop() {
 
     loadCart();
 
-
-
     renderProducts();
 
-
-
     updateCart();
-
-
 
 }
 
 
-
-
-
-
-
+// =====================================
+// START
+// =====================================
 
 startShop();
 
-// ===================================
-// OPEN INFO FROM LINK
-// ===================================
 
-const urlParams = new URLSearchParams(window.location.search);
+// =====================================
+// OPEN INFO FROM URL
+// =====================================
 
-if (urlParams.get("info") === "1") {
+const urlParams =
+    new URLSearchParams(
+        window.location.search
+    );
 
-    infoOverlay.classList.add("active");
 
-    document.body.style.overflow = "hidden";
+if (
+    urlParams.get("info") === "1"
+) {
+
+    openInfoPanel();
 
 }
