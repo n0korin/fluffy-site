@@ -24,21 +24,22 @@ const PRODUCTS = [
     {
         id: "vozol",
 
-        name: "VOZOL",
+        name: "Vozol", 
+        price: 15.99,
 
         image: "./images/vozol-Photoroom.png",
 
         description:
-        "Качественная жидкость 30мл/5% с насыщенным вкусом и приятным послевкусием.",
+        "Жидкость Vozol 30мл / 5% с насыщенным вкусом.",
 
         flavours: [
             "Blueberry Ice",
-            "Strawberry Ice Cream",
             "Mixed Berries",
             "Grape Ice",
             "Watermelon Bubblegum",
             "Strawberry Kiwi",
-            "Sour Apple Ice"
+            "Sour Apple Ice",
+            "Mint"
         ]
     },
 
@@ -47,20 +48,36 @@ const PRODUCTS = [
         id: "elfliq",
 
         name: "ELFLIQ",
+        price: 15.99,
 
         image: "./images/elfliq-nic-salts-30ml-Photoroom.png",
 
         description:
-        "Популярные вкусы жидкости ELFLIQ 30мл/5% с ярким ароматом и мягким вкусом.",
+        "Жидкость ELFLIQ 30мл / 5% с яркими вкусами.",
 
         flavours: [
             "Grape",
             "Raspberry Lychee",
             "Blueberry Raspberry Pomegranate",
-            "Strawberry Banana",
             "Jasmine Raspberry",
             "Pineapple Colada",
             "Green Grape Rose"
+        ]
+    },
+   
+    {
+         id: "xros-cartridges",
+
+         name: "XROS",
+         price: 5.00,
+
+         image: "./images/xros-cartridges.png",
+
+         description:
+         "Картриджи XROS 2мл / 6Ω. 1 шт. — 5€, 4 шт. — 16€.",
+
+         flavours: [
+            "6Ω"
         ]
     }
 
