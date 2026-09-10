@@ -1,15 +1,3 @@
-/*
-========================================
- VAPE SHOP
- MAIN SCRIPT
-========================================
-*/
-
-
-// =====================================
-// SETTINGS
-// =====================================
-
 const TELEGRAM_LINK = "https://t.me/Fluffy_Manager";
 
 const PRODUCT_PRICE = 15.99;
@@ -24,7 +12,7 @@ const PRODUCTS = [
     {
         id: "vozol",
 
-        name: "Vozol", 
+        name: "Vozol",
         price: 15.99,
 
         image: "./images/vozol-Photoroom.png",
@@ -64,19 +52,22 @@ const PRODUCTS = [
             "Green Grape Rose"
         ]
     },
-   
+
+
     {
-         id: "xros-cartridges",
+        id: "xros-cartridges",
 
-         name: "XROS",
-         price: 4.99,
+        name: "XROS",
 
-         image: "./images/xros-cartridges.png",
+        // Цена за 1 картридж
+        price: 5.00,
 
-         description:
-         "Картриджи XROS 2мл / 6Ω. 1 шт. — 5€, 4 шт. — 16€.",
+        image: "./images/xros-cartridges.png",
 
-         flavours: [
+        description:
+        "Картриджи XROS 2мл / 6Ω. 1 шт. — 5€, 4 шт. — 16€.",
+
+        flavours: [
             "6Ω"
         ]
     }
@@ -263,7 +254,7 @@ function renderProducts() {
 
 
             <div class="product-price">
-                ${PRODUCT_PRICE.toFixed(2)}€
+                ${product.price.toFixed(2)}€
             </div>
 
 
@@ -284,7 +275,7 @@ function renderProducts() {
 
                         <button
                             class="add-button"
-                            data-product="${product.name}"
+                            data-product="${product.id}"
                             data-flavour="${flavour}"
                         >
                             +
@@ -325,7 +316,7 @@ function activateAddButtons() {
             "click",
             () => {
 
-                const product =
+                const productId =
                     button.dataset.product;
 
                 const flavour =
@@ -333,7 +324,7 @@ function activateAddButtons() {
 
 
                 addToCart(
-                    product,
+                    productId,
                     flavour
                 );
 
@@ -349,17 +340,28 @@ function activateAddButtons() {
 // ADD TO CART
 // =====================================
 
-function addToCart(product, flavour) {
+function addToCart(productId, flavour) {
+
+    const product =
+        PRODUCTS.find(
+            item => item.id === productId
+        );
+
+
+    if (!product) return;
+
 
     const item = {
 
         id: Date.now(),
 
-        product,
+        product: product.name,
 
-        flavour,
+        productId: product.id,
 
-        price: PRODUCT_PRICE
+        flavour: flavour,
+
+        price: product.price
 
     };
 
@@ -378,19 +380,74 @@ function addToCart(product, flavour) {
 
 
 // =====================================
-// TOTAL
+// XROS PRICE
+// =====================================
+
+function getXrosPrice(quantity) {
+
+    if (quantity <= 0) {
+        return 0;
+    }
+
+
+    // Каждые 4 штуки = 16€
+    const packsOfFour =
+        Math.floor(quantity / 4);
+
+
+    // Оставшиеся штуки = по 5€
+    const remaining =
+        quantity % 4;
+
+
+    return (
+        packsOfFour * 16 +
+        remaining * 5
+    );
+
+}
+
+
+// =====================================
+// GET TOTAL
 // =====================================
 
 function getTotal() {
 
-    return cart.reduce(
+    let total = 0;
 
-        (sum, item) =>
-            sum + item.price,
 
-        0
+    // =================================
+    // Обычные товары
+    // =================================
 
-    );
+    cart.forEach(item => {
+
+        if (item.productId !== "xros-cartridges") {
+
+            total += item.price;
+
+        }
+
+    });
+
+
+    // =================================
+    // XROS
+    // =================================
+
+    const xrosCount =
+        cart.filter(
+            item =>
+                item.productId === "xros-cartridges"
+        ).length;
+
+
+    total +=
+        getXrosPrice(xrosCount);
+
+
+    return total;
 
 }
 
@@ -481,6 +538,23 @@ function renderCart() {
             "cart-item";
 
 
+        // Для XROS показываем реальную цену
+        // одной штуки в списке корзины
+
+        let displayPrice =
+            item.price;
+
+
+        if (
+            item.productId ===
+            "xros-cartridges"
+        ) {
+
+            displayPrice = 5.00;
+
+        }
+
+
         cartElement.innerHTML = `
 
             <div class="cart-item-info">
@@ -499,7 +573,7 @@ function renderCart() {
             <div class="cart-item-right">
 
                 <span>
-                    ${item.price.toFixed(2)}€
+                    ${displayPrice.toFixed(2)}€
                 </span>
 
                 <button
