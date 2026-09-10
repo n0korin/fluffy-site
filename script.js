@@ -69,7 +69,7 @@ const PRODUCTS = [
          id: "xros-cartridges",
 
          name: "XROS",
-         price: 5.00,
+         price: 4.99,
 
          image: "./images/xros-cartridges.png",
 
