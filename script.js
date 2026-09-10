@@ -62,7 +62,7 @@ const PRODUCTS = [
         // Цена за 1 картридж
         price: 4.99,
 
-        image: "./images/xros-cartridges.png",
+        image: "./images/xros-cartridges.webp",
 
         description:
         "Картриджи XROS 2мл / 6Ω. 1 шт. — 5€, 4 шт. — 16€.",
