@@ -59,7 +59,7 @@ const PRODUCTS = [
 
         name: "XROS",
 
-        // Цена за 1 картридж
+        // 1 картридж = 5€
         price: 4.99,
 
         image: "./images/xros-cartridges.webp",
@@ -217,6 +217,8 @@ const telegramButton =
 
 function renderProducts() {
 
+    if (!productsContainer) return;
+
     productsContainer.innerHTML = "";
 
 
@@ -351,22 +353,25 @@ function addToCart(productId, flavour) {
     if (!product) return;
 
 
-    const item = {
+    cart.push({
 
-        id: Date.now(),
+        id:
+            Date.now() +
+            Math.random(),
 
-        product: product.name,
+        product:
+            product.name,
 
-        productId: product.id,
+        productId:
+            product.id,
 
-        flavour: flavour,
+        flavour:
+            flavour,
 
-        price: product.price
+        price:
+            product.price
 
-    };
-
-
-    cart.push(item);
+    });
 
 
     updateCart();
@@ -380,7 +385,31 @@ function addToCart(productId, flavour) {
 
 
 // =====================================
+// CHECK XROS
+// =====================================
+
+function isXros(item) {
+
+    return (
+        item.productId === "xros-cartridges" ||
+        item.product === "XROS"
+    );
+
+}
+
+
+// =====================================
 // XROS PRICE
+// =====================================
+//
+// 1 шт.  = 5€
+// 2 шт.  = 10€
+// 3 шт.  = 15€
+// 4 шт.  = 16€
+// 5 шт.  = 21€
+// 6 шт.  = 26€
+// 7 шт.  = 31€
+// 8 шт.  = 32€
 // =====================================
 
 function getXrosPrice(quantity) {
@@ -390,12 +419,10 @@ function getXrosPrice(quantity) {
     }
 
 
-    // Каждые 4 штуки = 16€
     const packsOfFour =
         Math.floor(quantity / 4);
 
 
-    // Оставшиеся штуки = по 5€
     const remaining =
         quantity % 4;
 
@@ -409,40 +436,33 @@ function getXrosPrice(quantity) {
 
 
 // =====================================
-// GET TOTAL
+// TOTAL
 // =====================================
 
 function getTotal() {
 
     let total = 0;
 
+    let xrosCount = 0;
 
-    // =================================
-    // Обычные товары
-    // =================================
 
     cart.forEach(item => {
 
-        if (item.productId !== "xros-cartridges") {
+        if (isXros(item)) {
 
-            total += item.price;
+            xrosCount++;
+
+        } else {
+
+            total +=
+                Number(item.price) || 0;
 
         }
 
     });
 
 
-    // =================================
-    // XROS
-    // =================================
-
-    const xrosCount =
-        cart.filter(
-            item =>
-                item.productId === "xros-cartridges"
-        ).length;
-
-
+    // Добавляем стоимость XROS
     total +=
         getXrosPrice(xrosCount);
 
@@ -538,17 +558,12 @@ function renderCart() {
             "cart-item";
 
 
-        // Для XROS показываем реальную цену
-        // одной штуки в списке корзины
-
         let displayPrice =
-            item.price;
+            Number(item.price) || 0;
 
 
-        if (
-            item.productId ===
-            "xros-cartridges"
-        ) {
+        // У XROS цена одной штуки всегда 5€
+        if (isXros(item)) {
 
             displayPrice = 5.00;
 
@@ -641,7 +656,7 @@ function removeFromCart(id) {
     cart =
         cart.filter(
             item =>
-                item.id !== id
+                Number(item.id) !== id
         );
 
 
@@ -814,15 +829,20 @@ function showToast(text) {
     if (!toast) return;
 
 
-    toast.textContent = text;
+    toast.textContent =
+        text;
 
 
-    toast.classList.add("show");
+    toast.classList.add(
+        "show"
+    );
 
 
     setTimeout(() => {
 
-        toast.classList.remove("show");
+        toast.classList.remove(
+            "show"
+        );
 
     }, 1500);
 
@@ -851,18 +871,43 @@ function loadCart() {
         );
 
 
-    if (savedCart) {
+    if (!savedCart) return;
 
-        try {
 
-            cart =
-                JSON.parse(savedCart);
+    try {
 
-        } catch {
+        cart =
+            JSON.parse(savedCart);
 
-            cart = [];
 
-        }
+        // Исправляем старые товары,
+        // которые были сохранены до новой системы
+
+        cart =
+            cart.map(item => {
+
+                if (
+                    !item.productId &&
+                    item.product === "XROS"
+                ) {
+
+                    item.productId =
+                        "xros-cartridges";
+
+                    item.price =
+                        5.00;
+
+                }
+
+
+                return item;
+
+            });
+
+
+    } catch {
+
+        cart = [];
 
     }
 
