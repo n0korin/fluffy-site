@@ -60,7 +60,7 @@ const PRODUCTS = [
         name: "XROS",
 
         // Цена за 1 картридж
-        price: 5.00,
+        price: 4.99,
 
         image: "./images/xros-cartridges.png",
 
