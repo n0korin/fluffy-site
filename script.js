@@ -3,9 +3,7 @@ const TELEGRAM_LINK = "https://t.me/Fluffy_Manager";
 const PRODUCT_PRICE = 15.99;
 
 
-// =====================================
-// PRODUCTS DATABASE
-// =====================================
+
 
 const PRODUCTS = [
 
@@ -59,7 +57,7 @@ const PRODUCTS = [
 
         name: "XROS",
 
-        // 1 картридж = 5€
+
         price: 4.99,
 
         image: "./images/xros-cartridges.webp",
@@ -75,16 +73,11 @@ const PRODUCTS = [
 ];
 
 
-// =====================================
-// CART
-// =====================================
 
 let cart = [];
 
 
-// =====================================
-// HTML ELEMENTS
-// =====================================
+
 
 const productsContainer =
     document.querySelector("#products");
@@ -111,9 +104,6 @@ const toast =
     document.querySelector("#toast");
 
 
-// =====================================
-// INFO DRAWER
-// =====================================
 
 const infoOverlay =
     document.querySelector("#infoOverlay");
@@ -197,9 +187,7 @@ document.addEventListener(
 );
 
 
-// =====================================
-// CART BUTTONS
-// =====================================
+
 
 const openCartButton =
     document.querySelector("#openCart");
@@ -211,9 +199,7 @@ const telegramButton =
     document.querySelector("#telegramOrder");
 
 
-// =====================================
-// RENDER PRODUCTS
-// =====================================
+
 
 function renderProducts() {
 
@@ -302,9 +288,6 @@ function renderProducts() {
 }
 
 
-// =====================================
-// ADD BUTTONS
-// =====================================
 
 function activateAddButtons() {
 
@@ -338,9 +321,6 @@ function activateAddButtons() {
 }
 
 
-// =====================================
-// ADD TO CART
-// =====================================
 
 function addToCart(productId, flavour) {
 
@@ -384,9 +364,6 @@ function addToCart(productId, flavour) {
 }
 
 
-// =====================================
-// CHECK XROS
-// =====================================
 
 function isXros(item) {
 
@@ -398,19 +375,8 @@ function isXros(item) {
 }
 
 
-// =====================================
-// XROS PRICE
-// =====================================
-//
-// 1 шт.  = 5€
-// 2 шт.  = 10€
-// 3 шт.  = 15€
-// 4 шт.  = 16€
-// 5 шт.  = 21€
-// 6 шт.  = 26€
-// 7 шт.  = 31€
-// 8 шт.  = 32€
-// =====================================
+
+
 
 function getXrosPrice(quantity) {
 
@@ -435,9 +401,6 @@ function getXrosPrice(quantity) {
 }
 
 
-// =====================================
-// TOTAL
-// =====================================
 
 function getTotal() {
 
@@ -462,7 +425,7 @@ function getTotal() {
     });
 
 
-    // Добавляем стоимость XROS
+
     total +=
         getXrosPrice(xrosCount);
 
@@ -472,9 +435,6 @@ function getTotal() {
 }
 
 
-// =====================================
-// UPDATE CART
-// =====================================
 
 function updateCart() {
 
@@ -521,9 +481,6 @@ function updateCart() {
 }
 
 
-// =====================================
-// RENDER CART
-// =====================================
 
 function renderCart() {
 
@@ -562,7 +519,7 @@ function renderCart() {
             Number(item.price) || 0;
 
 
-        // У XROS цена одной штуки всегда 5€
+
         if (isXros(item)) {
 
             displayPrice = 5.00;
@@ -613,9 +570,7 @@ function renderCart() {
 }
 
 
-// =====================================
-// REMOVE BUTTONS
-// =====================================
+
 
 function activateRemoveButtons() {
 
@@ -647,9 +602,7 @@ function activateRemoveButtons() {
 }
 
 
-// =====================================
-// REMOVE FROM CART
-// =====================================
+
 
 function removeFromCart(id) {
 
@@ -665,9 +618,7 @@ function removeFromCart(id) {
 }
 
 
-// =====================================
-// OPEN CART
-// =====================================
+
 
 function openCart() {
 
@@ -678,9 +629,7 @@ function openCart() {
 }
 
 
-// =====================================
-// CLOSE CART
-// =====================================
+
 
 function closeCart() {
 
@@ -691,9 +640,8 @@ function closeCart() {
 }
 
 
-// =====================================
-// CART EVENTS
-// =====================================
+
+
 
 if (openCartButton) {
 
@@ -735,9 +683,7 @@ if (cartModal) {
 }
 
 
-// =====================================
-// TELEGRAM MESSAGE
-// =====================================
+
 
 function createTelegramMessage() {
 
@@ -778,9 +724,7 @@ ${getTotal().toFixed(2)}€
 }
 
 
-// =====================================
-// SEND TO TELEGRAM
-// =====================================
+
 
 if (telegramButton) {
 
@@ -820,9 +764,7 @@ if (telegramButton) {
 }
 
 
-// =====================================
-// TOAST
-// =====================================
+
 
 function showToast(text) {
 
@@ -849,9 +791,7 @@ function showToast(text) {
 }
 
 
-// =====================================
-// LOCAL STORAGE
-// =====================================
+
 
 function saveCart() {
 
@@ -880,8 +820,6 @@ function loadCart() {
             JSON.parse(savedCart);
 
 
-        // Исправляем старые товары,
-        // которые были сохранены до новой системы
 
         cart =
             cart.map(item => {
@@ -914,9 +852,6 @@ function loadCart() {
 }
 
 
-// =====================================
-// IMAGE ERROR
-// =====================================
 
 document.addEventListener(
     "error",
@@ -936,9 +871,7 @@ document.addEventListener(
 );
 
 
-// =====================================
-// START SHOP
-// =====================================
+
 
 function startShop() {
 
@@ -951,16 +884,11 @@ function startShop() {
 }
 
 
-// =====================================
-// START
-// =====================================
 
 startShop();
 
 
-// =====================================
-// OPEN INFO FROM URL
-// =====================================
+
 
 const urlParams =
     new URLSearchParams(
