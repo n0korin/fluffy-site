@@ -6,7 +6,6 @@ const PRODUCT_PRICE = 15.99;
 
 
 const PRODUCTS = [
-
     {
         id: "vozol",
 
@@ -19,16 +18,13 @@ const PRODUCTS = [
         "Жидкость Vozol 30мл / 5% с насыщенным вкусом.",
 
         flavours: [
-            "Blueberry Ice",
-            "Mixed Berries",
-            "Grape Ice",
-            "Watermelon Bubblegum",
-            "Strawberry Kiwi",
-            "Sour Apple Ice",
-            "Mint"
+            "Lyche Mint",
+            "Peach Mango Watermelon",
+            "Cherry Vanilla Cream",
+            "Strawberry Watermelon",
+            "White Peach Jasmin"
         ]
     },
-
 
     {
         id: "elfliq",
@@ -42,15 +38,14 @@ const PRODUCTS = [
         "Жидкость ELFLIQ 30мл / 5% с яркими вкусами.",
 
         flavours: [
-            "Grape",
-            "Raspberry Lychee",
-            "Blueberry Raspberry Pomegranate",
+            "Fizzy Cherry",
+            "Blueberry Cherry Cranberry",
+            "Cherry Sour Raspberry",
+            "Green Grape Rose",
             "Jasmine Raspberry",
-            "Pineapple Colada",
-            "Green Grape Rose"
+            "Mr. Blue"
         ]
     },
-
 
     {
         id: "xros-cartridges",
